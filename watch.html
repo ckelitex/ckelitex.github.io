@@ -484,7 +484,7 @@ footer {
 
 
 
-<section class="container" id="stream">
+<section class="container"><div class="section-label">Stream countdown</div><div class="stream" style="text-align:center"><h2 id="schedule-status">Next scheduled stream</h2><div id="stream-countdown" style="font-size:clamp(28px,6vw,54px);font-weight:900;color:var(--purple);font-variant-numeric:tabular-nums">Loading…</div><p id="next-stream-time"></p><small>Based on the usual Irish-time schedule. Actual live status may differ.</small></div></section><section class="container"><div class="section-label">FUT Champions • 20–22 November 2026</div><div class="card"><h2>🏆 Last week's results</h2><div style="font-size:48px;font-weight:900;color:var(--purple)">4 WINS</div><p>Weekend League result. Next weekend, we go again!</p></div></section><section class="container" id="stream">
 
   <div class="section-label">The stream</div>
 
@@ -993,5 +993,5 @@ footer {
 </script>
 
 
-</body>
+<script>(function(){const fmt=new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Dublin",weekday:"short",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",second:"2-digit",hourCycle:"h23"});function parts(d){return Object.fromEntries(fmt.formatToParts(d).map(p=>[p.type,p.value]));}function localInstant(y,m,d,h,min){let target=Date.UTC(y,m-1,d,h,min);let t=target;for(let i=0;i<3;i++){let p=parts(new Date(t));t+=target-Date.UTC(+p.year,+p.month-1,+p.day,+p.hour,+p.minute,+p.second);}return t;}function tick(){let now=Date.now(),p=parts(new Date(now)),next=null,active=false;for(let i=0;i<8;i++){let day=new Date(Date.UTC(+p.year,+p.month-1,+p.day+i));let w=day.getUTCDay();if(w===0)continue;let args=[day.getUTCFullYear(),day.getUTCMonth()+1,day.getUTCDate()];let start=localInstant(...args,w===6?13:17,30),end=localInstant(...args,w===6?18:20,0);if(now>=start&&now<end){next=end;active=true;break;}if(start>now){next=start;break;}}if(next===null)return;let n=Math.max(0,Math.ceil((next-now)/1000));let pad=x=>String(x).padStart(2,"0");document.getElementById("schedule-status").textContent=active?"🔴 Scheduled stream window":"⏳ Next scheduled stream";document.getElementById("stream-countdown").textContent=pad(Math.floor(n/86400))+"d "+pad(Math.floor(n/3600)%24)+"h "+pad(Math.floor(n/60)%60)+"m "+pad(n%60)+"s";document.getElementById("next-stream-time").textContent=(active?"Scheduled finish: ":"Starts: ")+new Intl.DateTimeFormat("en-IE",{timeZone:"Europe/Dublin",weekday:"long",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).format(new Date(next))+" Irish time";}tick();setInterval(tick,1000);})();</script></body>
 </html>
