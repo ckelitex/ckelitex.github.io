@@ -275,7 +275,7 @@ h2 {
   margin-bottom: 16px;
 }
 
-/* Returning Insider experience */
+/* Returning Insiders */
 
 .member-only {
   display: none;
@@ -324,20 +324,6 @@ html.returning-insider a.member-only {
   margin: 15px 0;
 }
 
-.insider-reset {
-  background: none;
-  border: none;
-  color: #aaa7b7;
-  font-size: 12px;
-  text-decoration: underline;
-  cursor: pointer;
-  margin-top: 20px;
-}
-
-.insider-reset:hover {
-  color: white;
-}
-
 @keyframes welcomeAppear {
   from {
     opacity: 0;
@@ -348,6 +334,8 @@ html.returning-insider a.member-only {
     transform: translateY(0);
   }
 }
+
+/* Privacy */
 
 .privacy {
   max-width: 750px;
@@ -376,6 +364,78 @@ footer {
   font-size: 13px;
 }
 
+/* Cookie consent */
+
+.cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: calc(100% - 40px);
+  max-width: 440px;
+  background: #1a1922;
+  border: 1px solid #b49af466;
+  border-radius: 18px;
+  padding: 24px;
+  z-index: 9999;
+  box-shadow: 0 10px 50px #00000088;
+}
+
+.cookie-banner[hidden] {
+  display: none !important;
+}
+
+.cookie-banner h3 {
+  margin: 0 0 10px;
+  color: #b49af4;
+  font-size: 19px;
+}
+
+.cookie-banner p {
+  color: #aaa7b7;
+  font-size: 13px;
+  margin: 0 0 18px;
+}
+
+.cookie-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.cookie-actions button {
+  flex: 1;
+  background: #b49af4;
+  color: #171020;
+  border: 1px solid #b49af4;
+  border-radius: 9px;
+  padding: 12px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.cookie-actions button:hover {
+  background: #d3c3ff;
+}
+
+.cookie-settings {
+  background: none;
+  border: none;
+  color: #b49af4;
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 10px;
+}
+
+.cookie-settings:hover {
+  color: white;
+}
+
+.cookie-privacy-link {
+  color: #b49af4;
+  text-decoration: underline;
+}
+
 @media(max-width:600px) {
   nav { justify-content: center; }
   .navlinks { gap: 18px; }
@@ -384,6 +444,13 @@ footer {
   .stream { padding: 20px; }
   .insiders { padding: 30px 16px; }
   .insider-benefits span { width: 100%; }
+
+  .cookie-banner {
+    left: 12px;
+    bottom: 12px;
+    width: calc(100% - 24px);
+    padding: 20px;
+  }
 }
 
 @media(prefers-reduced-motion:reduce) {
@@ -630,14 +697,6 @@ footer {
           Join the community
         </a>
 
-        <br>
-
-        <button class="insider-reset"
-                id="reset-insider"
-                type="button">
-          Not an Insider? Show signup form
-        </button>
-
       </div>
 
     </div>
@@ -735,7 +794,9 @@ footer {
 
   <details class="privacy" id="privacy">
 
-    <summary>Email privacy information</summary>
+    <summary>Privacy &amp; cookie information</summary>
+
+    <h3>Email subscriptions</h3>
 
     <p>
       CKEliteX collects your email address when you voluntarily
@@ -755,20 +816,60 @@ footer {
       for more information.
     </p>
 
+    <h3>Insider recognition</h3>
+
     <p>
       This website uses local browser storage to remember
       visitors who have reached the Insider welcome page.
       No email address or password is stored by this feature.
       Browser recognition is not secure account authentication.
-      You can reset this preference using the option in
-      the Insider section or by clearing your browser data.
+      Clearing your website data removes this preference.
+      This does not unsubscribe you from CKEliteX emails.
+    </p>
+
+    <h3>Google Analytics</h3>
+
+    <p>
+      With your permission, CKEliteX uses Google Analytics
+      to understand website traffic, visitor engagement,
+      approximate geographic location, device types and
+      traffic sources.
     </p>
 
     <p>
-      You can withdraw your consent at any time using the
-      unsubscribe link included in our emails. You can also
-      contact CKEliteX to request access, correction or deletion
-      of your personal information.
+      Google Analytics uses cookies and similar technologies
+      to measure website usage. Analytics is optional and
+      is not loaded until you accept analytics cookies.
+      Your choice is remembered in your browser.
+    </p>
+
+    <p>
+      You can withdraw or change your analytics consent
+      at any time using Cookie Settings below.
+      Google may process information outside the European
+      Economic Area.
+      Read the
+      <a href="https://policies.google.com/privacy"
+         target="_blank" rel="noopener">Google Privacy Policy</a>
+      for more information.
+    </p>
+
+    <h3>Third-party services</h3>
+
+    <p>
+      This website includes services provided by Twitch
+      and Kit. These services may process information
+      and use their own cookies or similar technologies.
+      Their privacy policies explain how they handle data.
+    </p>
+
+    <h3>Your privacy rights</h3>
+
+    <p>
+      You can withdraw your email consent at any time using
+      the unsubscribe link included in our emails.
+      You can also contact CKEliteX to request access,
+      correction or deletion of your personal information.
     </p>
 
     <p>
@@ -780,12 +881,57 @@ footer {
 
   </details>
 
+  <button class="cookie-settings"
+          id="cookie-settings"
+          type="button">
+    Cookie Settings
+  </button>
+
 </footer>
+
+<!-- Cookie consent banner -->
+
+<aside class="cookie-banner"
+       id="cookie-banner"
+       aria-labelledby="cookie-title"
+       hidden>
+
+  <h3 id="cookie-title">🍪 Your privacy matters</h3>
+
+  <p>
+    We use optional Google Analytics cookies to understand
+    how visitors use CKEliteX and improve your experience.
+    You can accept or decline analytics cookies.
+    Your choice will not affect your Insider membership.
+  </p>
+
+  <p>
+    <a class="cookie-privacy-link"
+       href="#privacy"
+       id="cookie-privacy-link">
+      Privacy &amp; cookie information
+    </a>
+  </p>
+
+  <div class="cookie-actions">
+
+    <button id="accept-cookies" type="button">
+      Accept analytics
+    </button>
+
+    <button id="decline-cookies" type="button">
+      Decline analytics
+    </button>
+
+  </div>
+
+</aside>
+
+<!-- Insider recognition -->
 
 <script>
 (function () {
 
-  // Prevent the Kit signup form from loading twice.
   let signupFormLoaded = false;
 
   function isInsider() {
@@ -816,14 +962,19 @@ footer {
       "https://ckelitex.kit.com/f2951b9928/index.js";
 
     kitScript.onerror = function () {
+
       signupFormLoaded = false;
+
       kitScript.remove();
+
       formContainer.textContent =
         "Unable to load the signup form. Please refresh the page.";
+
     };
 
     formContainer.textContent = "";
     formContainer.appendChild(kitScript);
+
   }
 
   function updateInsiderStatus() {
@@ -837,31 +988,10 @@ footer {
     if (!member) {
       loadSignupForm();
     }
+
   }
 
   updateInsiderStatus();
-
-  const resetButton = document.getElementById("reset-insider");
-
-  if (resetButton) {
-
-    resetButton.addEventListener("click", function () {
-
-      try {
-
-        localStorage.removeItem("ckelitex_insider");
-
-        window.location.reload();
-
-      } catch (error) {
-
-        alert("Unable to reset browser recognition.");
-
-      }
-
-    });
-
-  }
 
   window.addEventListener("storage", function (event) {
 
@@ -872,6 +1002,234 @@ footer {
   });
 
   window.addEventListener("pageshow", updateInsiderStatus);
+
+})();
+</script>
+
+<!-- Google Analytics with consent -->
+
+<script>
+(function () {
+
+  const measurementId = "G-95GHT42KQX";
+  const consentKey = "ckelitex_analytics_consent";
+
+  const banner = document.getElementById("cookie-banner");
+  const acceptButton = document.getElementById("accept-cookies");
+  const declineButton = document.getElementById("decline-cookies");
+  const settingsButton = document.getElementById("cookie-settings");
+
+  let analyticsLoaded = false;
+  let sessionConsent = null;
+
+  window["ga-disable-" + measurementId] = true;
+
+  function getConsent() {
+
+    try {
+      return localStorage.getItem(consentKey) || sessionConsent;
+    } catch (error) {
+      return sessionConsent;
+    }
+
+  }
+
+  function saveConsent(value) {
+
+    sessionConsent = value;
+
+    try {
+      localStorage.setItem(consentKey, value);
+    } catch (error) {}
+
+  }
+
+  function startAnalytics() {
+
+    if (getConsent() !== "accepted") return;
+
+    window["ga-disable-" + measurementId] = false;
+
+    if (analyticsLoaded) return;
+
+    analyticsLoaded = true;
+
+    window.dataLayer = window.dataLayer || [];
+
+    window.gtag = function () {
+      window.dataLayer.push(arguments);
+    };
+
+    window.gtag("consent", "default", {
+      analytics_storage: "granted",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied"
+    });
+
+    window.gtag("js", new Date());
+
+    window.gtag("config", measurementId, {
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false,
+      send_page_view: true,
+      cookie_domain: "none",
+      cookie_expires: 15552000,
+      cookie_update: false,
+      page_location: window.location.origin + window.location.pathname
+    });
+
+    const analyticsScript = document.createElement("script");
+
+    analyticsScript.async = true;
+
+    analyticsScript.src =
+      "https://www.googletagmanager.com/gtag/js?id=" +
+      measurementId;
+
+    analyticsScript.onerror = function () {
+      analyticsLoaded = false;
+      analyticsScript.remove();
+    };
+
+    document.head.appendChild(analyticsScript);
+
+  }
+
+  function deleteAnalyticsCookies() {
+
+    document.cookie.split(";").forEach(function (cookie) {
+
+      const name = cookie.split("=")[0].trim();
+
+      if (
+        name === "_ga" ||
+        name.startsWith("_ga_") ||
+        name === "_gid" ||
+        name.startsWith("_gat")
+      ) {
+
+        document.cookie =
+          name + "=; Max-Age=0; path=/; Secure; SameSite=Lax";
+
+        document.cookie =
+          name + "=; Max-Age=0; path=/; domain=" +
+          window.location.hostname + "; Secure; SameSite=Lax";
+
+      }
+
+    });
+
+  }
+
+  function stopAnalytics() {
+
+    window["ga-disable-" + measurementId] = true;
+
+    if (typeof window.gtag === "function") {
+
+      window.gtag("consent", "update", {
+        analytics_storage: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied"
+      });
+
+    }
+
+    deleteAnalyticsCookies();
+
+  }
+
+  acceptButton.addEventListener("click", function () {
+
+    saveConsent("accepted");
+
+    banner.hidden = true;
+
+    if (analyticsLoaded) {
+      window.location.reload();
+    } else {
+      startAnalytics();
+    }
+
+  });
+
+  declineButton.addEventListener("click", function () {
+
+    saveConsent("declined");
+
+    stopAnalytics();
+
+    banner.hidden = true;
+
+    if (analyticsLoaded) {
+      window.location.reload();
+    }
+
+  });
+
+  settingsButton.addEventListener("click", function () {
+
+    banner.hidden = false;
+    acceptButton.focus();
+
+  });
+
+  document.getElementById("cookie-privacy-link")
+    .addEventListener("click", function () {
+
+      document.getElementById("privacy").open = true;
+
+    });
+
+  window.addEventListener("storage", function (event) {
+
+    if (event.key === consentKey || event.key === null) {
+
+      sessionConsent = null;
+
+      if (getConsent() === "accepted") {
+
+        banner.hidden = true;
+
+        if (analyticsLoaded) {
+          window.location.reload();
+        } else {
+          startAnalytics();
+        }
+
+      } else {
+
+        stopAnalytics();
+
+        if (analyticsLoaded) {
+          window.location.reload();
+        } else {
+          banner.hidden = getConsent() === "declined";
+        }
+
+      }
+
+    }
+
+  });
+
+  const existingConsent = getConsent();
+
+  if (existingConsent === "accepted") {
+
+    startAnalytics();
+
+  } else if (existingConsent === "declined") {
+
+    stopAnalytics();
+
+  } else {
+
+    banner.hidden = false;
+
+  }
 
 })();
 </script>
