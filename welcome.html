@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Welcome | CKEliteX Insiders</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: radial-gradient(ellipse at top, #30213f, #101014 75%);
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  line-height: 1.7;
+}
+
+.welcome {
+  width: 100%;
+  max-width: 650px;
+  background: #1a1922;
+  border: 1px solid #b49af444;
+  border-radius: 24px;
+  padding: 45px 28px;
+  box-shadow: 0 0 60px #8916be25;
+  animation: appear .7s ease;
+}
+
+.crown {
+  width: 100px;
+  color: #b49af4;
+}
+
+.label {
+  color: #b49af4;
+  letter-spacing: 3px;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: clamp(30px, 6vw, 46px);
+  line-height: 1.2;
+}
+
+p { color: #aaa7b7; }
+
+.accent { color: #b49af4; }
+
+.status {
+  padding: 14px;
+  margin: 25px 0;
+  background: #b49af411;
+  border: 1px solid #b49af433;
+  border-radius: 12px;
+  color: #b49af4;
+  font-weight: bold;
+}
+
+.button {
+  display: block;
+  background: #b49af4;
+  color: #171020;
+  text-decoration: none;
+  padding: 15px 24px;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: .25s;
+}
+
+.button:hover {
+  background: #d3c3ff;
+  transform: translateY(-3px);
+}
+
+footer {
+  margin-top: 30px;
+  color: #aaa7b7;
+  font-size: 12px;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+
+<body>
+
+<main class="welcome">
+
+<svg class="crown" viewBox="0 0 100 100"
+fill="none" stroke="currentColor"
+stroke-width="4" stroke-linejoin="round"
+aria-label="CKEliteX crown">
+<path d="M12 30 L32 48 L50 18 L68 48 L88 30 L77 75 L23 75 Z"/>
+<path d="M25 85 H75"/>
+</svg>
+
+<div class="label">WELCOME TO THE INNER CIRCLE</div>
+
+<h1>Welcome to the<br>
+CKElite<span class="accent">X</span> Family!</h1>
+
+<h2 class="accent">You're officially an Insider!</h2>
+
+<p>Thank you for supporting CKEliteX and being part of the journey.</p>
+
+<p>You're now part of a community that shares a passion for football and gaming.</p>
+
+<div class="status">
+👑 Welcome to CKEliteX Insiders
+</div>
+
+<p>Keep an eye on your inbox for exclusive content, early access and exciting announcements.</p>
+
+<p>This is only the beginning. 💜</p>
+
+<a class="button" href="/">
+Return to CKEliteX →
+</a>
+
+<footer>
+CKEliteX © 2026<br>
+More than just a game.
+</footer>
+
+</main>
+
+<script>
+try {
+  localStorage.setItem("ckelitex_insider", "true");
+} catch (error) {
+  // Browser storage unavailable.
+}
+</script>
+
+</body>
+</html>
