@@ -460,6 +460,7 @@ footer {
     animation: none !important;
   }
 }
+#elite-members{text-align:center} #elite-members .panel{background:var(--panel);border:1px solid #b49af455;border-radius:18px;padding:24px;margin:16px auto;max-width:760px} #elite-members input,#elite-members button{width:100%;padding:14px;margin:7px 0;border-radius:9px;font:inherit} #elite-members input{background:#101014;color:white;border:1px solid #b49af455} #elite-members button{background:var(--purple);color:#171020;border:0;font-weight:bold;cursor:pointer} #elite-members button.secondary{background:#30213f;color:white} #elite-members button:disabled{opacity:.5;cursor:not-allowed} #elite-members .stats{display:grid;grid-template-columns:1fr 1fr;gap:12px} #elite-members .stat,#elite-members .reward{background:#25143b;border-radius:10px;padding:12px} #elite-members .number{font-size:32px;font-weight:bold;color:#e9b949} #elite-members .rewards{display:grid;grid-template-columns:repeat(auto-fit,minmax(75px,1fr));gap:8px;margin:20px 0} #elite-members .reward.active{outline:2px solid #c084fc} #elite-members .reward.claimed{outline:1px solid #22c55e} #elite-members [hidden]{display:none!important} #elite-members #message{overflow-wrap:anywhere} #elite-members p,#elite-members small{color:var(--muted)}
 </style>
 </head>
 
@@ -475,6 +476,7 @@ footer {
     <a href="#stream">Watch</a>
     <a href="#content">Content</a>
     <a href="#insiders">Insiders</a>
+    <a href="#elite-members">Elite Rewards</a>
     <a href="#about">About</a>
   </div>
 </nav>
@@ -517,6 +519,7 @@ footer {
     👑 You're an Insider!
   </a>
 
+<a class="button secondary" href="#elite-members">🎁 Elite Rewards &amp; Login</a>
 </header>
 
 <section class="container" id="stream">
@@ -711,6 +714,71 @@ footer {
 
 </section>
 
+<section class="container" id="elite-members"><div class="section-label">Free gaming account</div><h2>👑 Elite Rewards</h2><p>Separate from the Insider email newsletter.</p>
+
+<section id="auth" class="panel">
+  <h2>Join the Elite</h2>
+  <p>Create your account and start earning Elite Points.</p>
+
+  <input id="email" type="email"
+    placeholder="Email address" autocomplete="email">
+
+  <input id="password" type="password"
+    placeholder="Password (minimum 8 characters)">
+
+  <button id="login">LOGIN</button>
+  <button id="signup" class="secondary">CREATE ACCOUNT</button>
+</section>
+
+<section id="dashboard" hidden>
+
+  <div class="panel">
+    <h2>👑 Welcome to the Elite</h2>
+
+    <div class="stats">
+      <div class="stat">
+        🪙 Elite Points
+        <div id="points" class="number">—</div>
+      </div>
+
+      <div class="stat">
+        🔥 Daily Streak
+        <div id="streak" class="number">—</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>🎁 Daily Rewards</h2>
+    <p>Return every day to unlock bigger rewards!</p>
+
+    <div id="rewards" class="rewards"></div>
+
+    <button id="claim" disabled>CLAIM DAILY REWARD</button>
+
+    <p id="countdown"></p>
+
+    <small>
+      ⚠️ Miss a day and your streak resets.
+      Your earned points remain safe.
+    </small>
+  </div>
+
+  <div class="panel">
+    <h2>🚀 Coming Soon</h2>
+    <p>🎴 Virtual Pack Store</p>
+    <p>🏆 Community Leaderboards</p>
+    <p>🎮 Mini Games</p>
+    <p>👑 Exclusive Loyalty Badges</p>
+  </div>
+
+  <button id="logout" class="secondary">LOG OUT</button>
+
+</section>
+
+<p id="message" role="status"></p>
+
+</section>
 <section class="container" id="community">
 
   <div class="section-label">Stay connected</div>
@@ -827,7 +895,8 @@ footer {
       This does not unsubscribe you from CKEliteX emails.
     </p>
 
-    <h3>Google Analytics</h3>
+    <h3>Gaming accounts</h3><p>Supabase provides account authentication and stores your account email, profile, points, streak and last reward claim. Browser storage maintains your login session. Gaming accounts are separate from optional newsletter subscriptions. Contact us to request account deletion or access to your data. See <a href="https://supabase.com/privacy">Supabase privacy information</a>.</p>
+<h3>Google Analytics</h3>
 
     <p>
       With your permission, CKEliteX uses Google Analytics
@@ -1234,5 +1303,232 @@ footer {
 })();
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(function(){
+if (!window.supabase) { document.getElementById("message").textContent = "Account service unavailable. Please refresh."; return; }
+const db = window.supabase.createClient(
+  "https://bnzdbcpsrcbdrthnldpz.supabase.co",
+  "sb_publishable_IRD6E_OCoJmF5sTlp3pECA_X1CE2vV-"
+);
+
+const $ = id => document.getElementById(id);
+const rewards = [100,150,200,250,300,400,1000];
+
+let profile = null;
+let busy = false;
+
+function message(text) {
+  $("message").textContent = text;
+}
+
+function irishDate(date = new Date()) {
+  const parts = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Europe/Dublin",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  }).formatToParts(date);
+
+  const get = type => parts.find(p => p.type === type).value;
+  return `${get("year")}-${get("month")}-${get("day")}`;
+}
+
+function yesterday() {
+  const date = new Date(irishDate() + "T12:00:00Z");
+  date.setUTCDate(date.getUTCDate() - 1);
+  return date.toISOString().slice(0,10);
+}
+
+function render() {
+  if (!profile) return;
+
+  const claimed = profile.last_claim === irishDate();
+
+  const streak = claimed || profile.last_claim === yesterday()
+    ? profile.streak : 0;
+
+  const completed = streak === 0 ? 0 : ((streak - 1) % 7) + 1;
+  const next = claimed ? completed : (streak % 7) + 1;
+
+  $("points").textContent = profile.points.toLocaleString();
+  $("streak").textContent = streak;
+
+  $("rewards").innerHTML = rewards.map((amount,i) => {
+    const day = i + 1;
+    const done = claimed ? day <= completed : day < next;
+    const active = !claimed && day === next;
+
+    return `<div class="reward ${done ? "claimed" : ""} ${active ? "active" : ""}">
+      Day ${day}<br><br>
+      ${done ? "✅" : day === 7 ? "🎁" : "🪙"}<br><br>
+      <strong>${amount}</strong>
+    </div>`;
+  }).join("");
+
+  $("claim").disabled = claimed || busy;
+
+  $("claim").textContent = claimed
+    ? "✓ REWARD CLAIMED"
+    : `CLAIM ${rewards[next - 1]} POINTS`;
+}
+
+async function loadProfile() {
+  profile = null;
+  $("claim").disabled = true;
+
+  const {data: {user}, error: userError} = await db.auth.getUser();
+
+  if (userError || !user) {
+    $("auth").hidden = false;
+    $("dashboard").hidden = true;
+    return;
+  }
+
+  $("auth").hidden = true;
+  $("dashboard").hidden = false;
+
+  const {data,error} = await db.from("profiles")
+    .select("points,streak,last_claim")
+    .eq("id",user.id)
+    .single();
+
+  if (error) {
+    message(error.message);
+    return;
+  }
+
+  profile = data;
+  render();
+}
+
+$("signup").onclick = async () => {
+  const email = $("email").value.trim();
+  const password = $("password").value;
+
+  if (!email || password.length < 8) {
+    message("Enter an email and a password of at least 8 characters.");
+    return;
+  }
+
+  $("signup").disabled = true;
+
+  try {
+    const {data,error} = await db.auth.signUp({
+      email,
+      password,
+      options: {
+        emailRedirectTo: "https://ckelitex.github.io/"
+      }
+    });
+
+    if (error) {
+      message(error.message);
+    } else if (data.session) {
+      message("Account created!");
+      await loadProfile();
+    } else {
+      message("Check your email to confirm your account.");
+    }
+  } finally {
+    $("signup").disabled = false;
+  }
+};
+
+$("login").onclick = async () => {
+  if (!$("email").value.trim() || !$("password").value) { message("Enter your email and password."); return; }
+  $("login").disabled = true;
+
+  try {
+    const {error} = await db.auth.signInWithPassword({
+      email: $("email").value.trim(),
+      password: $("password").value
+    });
+
+    if (error) {
+      message(error.message);
+      return;
+    }
+
+    $("password").value = "";
+    message("");
+    await loadProfile();
+  } finally {
+    $("login").disabled = false;
+  }
+};
+
+$("claim").onclick = async () => {
+  if (busy) return;
+
+  busy = true;
+  $("claim").disabled = true;
+
+  try {
+    const {data,error} = await db.rpc("claim_daily_reward");
+
+    if (error) {
+      message(error.message);
+    } else {
+      message(`🎉 You earned ${data.reward} Elite Points!`);
+    }
+
+    await loadProfile();
+  } finally {
+    busy = false;
+    render();
+  }
+};
+
+$("logout").onclick = async () => {
+  const {error} = await db.auth.signOut();
+
+  if (error) {
+    message(error.message);
+    return;
+  }
+
+  message("Logged out successfully.");
+  await loadProfile();
+};
+
+function updateCountdown() {
+  const now = new Date();
+  const today = irishDate(now);
+
+  let low = now.getTime();
+  let high = low + 26 * 60 * 60 * 1000;
+
+  while (high - low > 1000) {
+    const mid = Math.floor((low + high) / 2);
+
+    if (irishDate(new Date(mid)) === today) {
+      low = mid;
+    } else {
+      high = mid;
+    }
+  }
+
+  const seconds = Math.max(0,Math.floor((high-now.getTime())/1000));
+  const h = Math.floor(seconds/3600);
+  const m = Math.floor((seconds%3600)/60);
+  const s = seconds%60;
+
+  $("countdown").textContent =
+    `Daily reset in ${h}h ${m}m ${s}s`;
+
+  render();
+}
+
+db.auth.onAuthStateChange(() => {
+  setTimeout(loadProfile,0);
+});
+
+loadProfile();
+updateCountdown();
+setInterval(updateCountdown,1000);
+
+})();
+</script>
 </body>
 </html>
