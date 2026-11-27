@@ -485,37 +485,29 @@ footer {
 
 
 
-<section class="container" id="content">
-
-  <div class="section-label">Gaming content</div>
-
-  <h2>The CKEliteX experience</h2>
-
-  <div class="grid">
-
-    <article class="card">
-      <div class="card-icon">⚽</div>
-      <h3>Ultimate Team</h3>
-      <p>Squad building, Division Rivals and the FC 27 grind.</p>
-    </article>
-
-    <article class="card">
-      <div class="card-icon">🏆</div>
-      <h3>FUT Champions</h3>
-      <p>Weekend League action, highlights and rewards.</p>
-    </article>
-
-    <article class="card">
-      <div class="card-icon">🎁</div>
-      <h3>Pack Openings</h3>
-      <p>Big pulls, promo cards and unforgettable moments.</p>
-    </article>
-
-  </div>
-
-</section>
-
-<section class="container"><h2>Watch the latest clips</h2><div class="grid"><a class="card" href="https://www.tiktok.com/@ckelitex"><div class="card-icon">♫</div><h3>TikTok ↗</h3><p>Gaming highlights</p></a><a class="card" href="https://www.youtube.com/@ckelitex"><div class="card-icon">▷</div><h3>YouTube ↗</h3><p>Videos and pack openings</p></a><a class="card" href="https://www.twitch.tv/ckelitex/clips"><div class="card-icon">▶</div><h3>Twitch Clips ↗</h3><p>Stream highlights</p></a></div></section><footer>
+<section class="hero"><div class="eyebrow">CKEliteX • Community</div><h1>Clips <span class="accent">Hub</span></h1><p>FC27 highlights. Your best moments. One weekly champion.</p><a class="button" href="#competition">Enter the competition</a></section>
+<section class="container"><div class="section-label">Official highlights</div><h2>Latest clips</h2><div class="grid" id="official">Loading…</div></section>
+<section class="container" id="competition"><div class="stream"><div class="section-label">Weekly challenge</div><h2>🏆 FC27 Clip of the Week</h2><h3 class="accent">2,500 Elite Points</h3><p>Submit your own FC27 goal, skill move, pack opening or memorable moment. One entry per member per week. MP4 only, maximum 30 seconds and 25 MB. Admin approval required.</p><p id="week">Loading competition…</p><p id="login-note" hidden><a class="button" href="account.html">Log in to enter</a></p><form id="entry-form" hidden><label>Clip title<input id="entry-title" required maxlength="120"></label><label>Choose your MP4 clip<input id="entry-file" type="file" accept="video/mp4,.mp4" required></label><label><input type="checkbox" required> This is my own FC27 gameplay and I agree to public playback if approved.</label><button class="button" id="submit-clip">Submit clip</button></form><p id="clip-status" role="status" aria-live="polite"></p></div><h2>Community entries</h2><div class="grid" id="community">Loading…</div></section>
+<section class="container"><div class="section-label">Champions</div><h2>👑 Hall of Fame</h2><div class="grid" id="champions">Loading…</div></section>
+<style>#entry-form label{display:block;margin:12px 0}#entry-form input:not([type=checkbox]){display:block;width:100%;padding:12px;background:#101014;color:white;border:1px solid #8050b4;border-radius:8px;font:inherit}#competition button,.container button{cursor:pointer;border:0;font:inherit;font-weight:bold}button:disabled{opacity:.5;cursor:not-allowed}.card video,.card iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:10px;background:#000}.card{min-width:0;overflow-wrap:anywhere}[hidden]{display:none!important}</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
+(()=>{const db=window.supabase.createClient(
+  "https://bnzdbcpsrcbdrthnldpz.supabase.co",
+  "sb_publishable_IRD6E_OCoJmF5sTlp3pECA_X1CE2vV-"
+);const $=id=>document.getElementById(id);let user,week;const status=s=>$('clip-status').textContent=s;
+function el(tag,t){const n=document.createElement(tag);n.textContent=t||'';return n}
+async function check(p){const r=await p;if(r.error)throw r.error;return r.data}
+function card(parent,title){const c=el('article');c.className='card';c.append(el('h3',title));parent.append(c);return c}
+function external(c,url){try{const u=new URL(url);if(u.protocol!=='https:'||!['youtube.com','www.youtube.com','youtu.be','m.youtube.com','twitch.tv','www.twitch.tv','clips.twitch.tv','tiktok.com','www.tiktok.com','vm.tiktok.com','vt.tiktok.com'].includes(u.hostname))return;const a=el('a','Watch clip ↗');a.className='button';a.href=u.href;a.target='_blank';a.rel='noopener noreferrer';c.append(a)}catch{}}
+function playback(c,path){const b=el('button','Play clip');b.className='button';c.append(b);b.onclick=async()=>{b.disabled=true;try{const d=await check(db.storage.from('community-clips').createSignedUrl(path,600));const v=el('video');v.controls=true;v.playsInline=true;v.src=d.signedUrl;c.append(v);b.remove()}catch(e){status(e.message);b.disabled=false}}}
+function duration(file){return new Promise((resolve,reject)=>{const v=el('video'),u=URL.createObjectURL(file);let timer;const finish=(err,d)=>{clearTimeout(timer);v.removeAttribute('src');v.load();URL.revokeObjectURL(u);err?reject(err):resolve(d)};v.preload='metadata';v.onloadedmetadata=()=>finish(null,v.duration);v.onerror=()=>finish(new Error('Cannot read this MP4.'));timer=setTimeout(()=>finish(new Error('Video check timed out.')),15000);v.src=u})}
+async function load(){const auth=await db.auth.getUser();user=auth.data?.user;const [clips,weeks,winners]=await Promise.all([check(db.from('clips').select('*').eq('published',true).order('featured',{ascending:false}).order('created_at',{ascending:false})),check(db.from('clip_competitions').select('*').order('week_start',{ascending:false}).limit(1)),check(db.from('clip_winners').select('*').order('crowned_at',{ascending:false}))]);week=weeks[0];$('official').replaceChildren();for(const x of clips){const c=card($('official'),(x.featured?'★ ':'')+x.title);if(x.description)c.append(el('p',x.description));external(c,x.video_url)}if(!clips.length)$('official').textContent='Official clips coming soon.';
+$('champions').replaceChildren();for(const w of winners){const c=card($('champions'),'🏆 '+w.username);c.append(el('p',w.points_awarded+' Elite Points · '+new Date(w.crowned_at).toLocaleDateString('en-IE')));if(Date.parse(w.spotlight_until)>Date.now())c.append(el('p','Current champion'));playback(c,w.competition_id+'/'+w.winner_id+'.mp4')}if(!winners.length)$('champions').textContent='The first champion is yet to be crowned.';
+$('community').replaceChildren();$('entry-form').hidden=true;$('login-note').hidden=true;if(!week){$('week').textContent='No competition scheduled.';return}const now=Date.now(),open=week.status==='open'&&now<Date.parse(week.submission_deadline),voting=week.status==='voting'&&now>=Date.parse(week.submission_deadline)&&now<Date.parse(week.voting_deadline);$('week').textContent=(open?'Submissions open':voting?'Voting open':'Entries closed')+' · Submissions close '+new Date(week.submission_deadline).toLocaleString('en-IE',{timeZone:'Europe/Dublin'})+' (Irish time)';
+const entries=await check(db.from('clip_entries').select('*').eq('competition_id',week.id));const mine=user&&entries.find(e=>e.user_id===user.id);if(mine)status('Your entry: '+mine.status);else if(open){$('entry-form').hidden=!user;$('login-note').hidden=!!user}let voted=false;if(user&&voting){const votes=await check(db.from('clip_votes').select('id').eq('competition_id',week.id).eq('voter_id',user.id));voted=!!votes.length}for(const e of entries.filter(e=>e.status==='approved')){const c=card($('community'),e.title);if(e.storage_path)playback(c,e.storage_path);else external(c,e.video_url);if(voting&&user&&e.user_id!==user.id&&!voted){const b=el('button','Vote for this clip');b.className='button';c.append(b);b.onclick=async()=>{b.disabled=true;try{await check(db.from('clip_votes').insert({competition_id:week.id,entry_id:e.id,voter_id:user.id}));await load();status('Vote recorded!')}catch(err){status(err.message);b.disabled=false}}}}if(!$('community').children.length)$('community').textContent='No approved entries yet.'}
+$('entry-form').onsubmit=async e=>{e.preventDefault();const b=$('submit-clip');b.disabled=true;try{if(!user||!week||week.status!=='open'||Date.now()>=Date.parse(week.submission_deadline))throw Error('Submissions are closed.');const file=$('entry-file').files[0],title=$('entry-title').value.trim();if(!title||!file||!file.name.toLowerCase().endsWith('.mp4')||file.size>26214400||!file.size)throw Error('Choose a title and an MP4 up to 25 MB.');status('Checking video duration…');const d=await duration(file);if(!Number.isFinite(d)||d<=0||d>30)throw Error('Your clip must be 30 seconds or shorter.');const path=week.id+'/'+user.id+'.mp4';status('Uploading clip…');await check(db.storage.from('community-clips').upload(path,file,{contentType:'video/mp4',upsert:false}));await check(db.from('clip_entries').insert({competition_id:week.id,user_id:user.id,title,category:'FC27',video_url:'storage:'+path,storage_path:path,duration_seconds:d,status:'pending'}));e.target.reset();await load();status('Submitted! Awaiting admin approval.')}catch(err){status(err.message+' If an upload already exists but no entry appears, contact CKEliteX.')}finally{b.disabled=false}};
+load().catch(e=>status('Unable to load clips: '+e.message));})();
+</script><footer>
 
   <div class="logo">
     <span class="accent">♛</span>
