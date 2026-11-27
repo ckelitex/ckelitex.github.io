@@ -490,7 +490,7 @@ footer {
   <h2>Join the Elite</h2>
   <p>Create your account and start earning Elite Points.</p>
 
-  <input id="email" type="email"
+  <label for="signup-name">Username (new accounts only)</label><input id="signup-name" maxlength="20" autocomplete="username" placeholder="Choose a username (3–20 characters)"><input id="email" type="email"
     placeholder="Email address" autocomplete="email">
 
   <input id="password" type="password"
@@ -500,7 +500,7 @@ footer {
   <button id="signup" class="secondary">CREATE ACCOUNT</button>
 </section>
 
-<section id="dashboard" hidden>
+<section id="dashboard" hidden><div id="username-needed" class="panel" hidden><p>Choose your unique leaderboard username in My Account.</p><a class="button" href="account.html?v=4">SET USERNAME</a></div>
 
   <div class="panel">
     <h2>👑 Welcome to the Elite</h2>
@@ -537,7 +537,7 @@ footer {
   <div class="panel">
     <h2>🚀 Coming Soon</h2>
     <p>🎴 Virtual Pack Store</p>
-    <p>🏆 Community Leaderboards</p>
+    <p><a href="leaderboard.html">🏆 View Community Leaderboard →</a></p>
     <p>🎮 Mini Games</p>
     <p>👑 Exclusive Loyalty Badges</p>
   </div>
@@ -1091,7 +1091,7 @@ async function loadProfile() {
   $("dashboard").hidden = false;
 
   const {data,error} = await db.from("profiles")
-    .select("points,streak,last_claim")
+    .select("points,streak,last_claim,username")
     .eq("id",user.id)
     .single();
 
@@ -1101,10 +1101,20 @@ async function loadProfile() {
   }
 
   profile = data;
+  if (!data.username) {
+    const requested = user.user_metadata?.requested_username;
+    if (typeof requested === "string" && /^[A-Za-z0-9_]{3,20}$/.test(requested)) {
+      const result = await db.rpc("set_username",{p_username:requested});
+      if (!result.error) profile.username = result.data;
+    }
+  }
+  $("username-needed").hidden = !!profile.username;
   render();
 }
 
 $("signup").onclick = async () => {
+  const username = $("signup-name").value.trim();
+  if (!/^[A-Za-z0-9_]{3,20}$/.test(username)) { message("Choose a username of 3–20 letters, numbers or underscores."); return; }
   const email = $("email").value.trim();
   const password = $("password").value;
 
@@ -1120,7 +1130,7 @@ $("signup").onclick = async () => {
       email,
       password,
       options: {
-        emailRedirectTo: "https://ckelitex.github.io/"
+        emailRedirectTo: "https://ckelitex.github.io/", data: { requested_username: username }
       }
     });
 
