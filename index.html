@@ -1,0 +1,360 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CKEliteX | Official Gaming Website</title>
+<meta name="description" content="The official CKEliteX website. Irish gaming creator featuring EA FC 27, Ultimate Team, Twitch streams, pack openings and gaming content.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://ckelitex.github.io/">
+<meta name="theme-color" content="#101014">
+
+<style>
+:root {
+  --purple: #b49af4;
+  --background: #101014;
+  --panel: #1a1922;
+  --muted: #aaa7b7;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--background);
+  color: #f5f4fa;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+a { color: inherit; text-decoration: none; }
+nav {
+  max-width: 1200px;
+  margin: auto;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.logo {
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+.accent { color: var(--purple); }
+.navlinks {
+  display: flex;
+  gap: 24px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.navlinks a:hover { color: white; }
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 100px 24px;
+  background: radial-gradient(
+    ellipse at top,
+    #30213f 0%,
+    #191520 45%,
+    #101014 80%
+  );
+  overflow: hidden;
+}
+.crown {
+  width: 110px;
+  height: 110px;
+  margin: auto;
+  color: var(--purple);
+  filter: drop-shadow(0 0 25px #9570d644);
+}
+.eyebrow {
+  color: var(--purple);
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+h1 {
+  font-size: clamp(52px, 10vw, 110px);
+  letter-spacing: -5px;
+  line-height: 1.1;
+  margin: 20px 0;
+}
+h2 {
+  font-size: clamp(25px, 4vw, 36px);
+  letter-spacing: -1px;
+  line-height: 1.2;
+}
+.hero p {
+  color: var(--muted);
+  max-width: 550px;
+  margin: 20px auto 32px;
+}
+.button {
+  display: inline-block;
+  background: var(--purple);
+  color: #171020;
+  font-weight: bold;
+  padding: 14px 28px;
+  border-radius: 9px;
+  margin: 6px;
+  transition: .25s;
+}
+.button:hover {
+  transform: translateY(-3px);
+  background: #d3c3ff;
+}
+.secondary {
+  background: #ffffff09;
+  border: 1px solid #ffffff25;
+  color: white;
+}
+.secondary:hover { background: #ffffff15; }
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 45px 24px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+  gap: 18px;
+}
+.card {
+  padding: 28px;
+  background: var(--panel);
+  border: 1px solid #ffffff0d;
+  border-radius: 16px;
+  transition: .25s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  border-color: #b49af466;
+}
+.card h3 { margin-bottom: 6px; }
+.card p { color: var(--muted); font-size: 14px; }
+.card-icon { font-size: 30px; }
+.section-label {
+  color: var(--purple);
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.stream {
+  background: linear-gradient(135deg,#21192e,#16161d);
+  border: 1px solid #b49af422;
+  padding: 35px;
+  border-radius: 20px;
+}
+.stream iframe {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border: 0;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+.schedule-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 18px 0;
+  border-bottom: 1px solid #ffffff10;
+}
+.schedule-row span { color: var(--muted); }
+.about {
+  max-width: 750px;
+  color: var(--muted);
+}
+footer {
+  text-align: center;
+  color: var(--muted);
+  padding: 40px 20px;
+  border-top: 1px solid #ffffff10;
+  font-size: 13px;
+}
+@media(max-width:600px) {
+  nav { justify-content: center; }
+  .navlinks { gap: 18px; }
+  .hero { padding: 65px 20px; }
+  h1 { letter-spacing: -3px; }
+  .stream { padding: 20px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a class="logo" href="#">
+    <span class="accent">♛</span>
+    CKElite<span class="accent">X</span>
+  </a>
+  <div class="navlinks">
+    <a href="#stream">Watch</a>
+    <a href="#content">Content</a>
+    <a href="#about">About</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <svg class="crown" viewBox="0 0 100 100"
+       fill="none" stroke="currentColor"
+       stroke-width="4" stroke-linejoin="round"
+       aria-label="CKEliteX crown">
+    <path d="M12 30 L32 48 L50 18 L68 48 L88 30 L77 75 L23 75 Z"/>
+    <path d="M25 85 H75"/>
+  </svg>
+
+  <div class="eyebrow">The official website</div>
+
+  <h1>CKElite<span class="accent">X</span></h1>
+
+  <h2>More than just a game.</h2>
+
+  <p>
+    Football. Gaming. Community.
+    Join the CKEliteX journey for FC 27 Ultimate Team,
+    pack openings and live gaming content.
+  </p>
+
+  <a class="button" href="#stream">▶ Watch CKEliteX</a>
+  <a class="button secondary" href="#community">Join the community</a>
+</header>
+
+<section class="container" id="stream">
+  <div class="section-label">The stream</div>
+  <h2>Watch CKEliteX</h2>
+
+  <div class="stream">
+    <h3>CKEliteX on Twitch</h3>
+    <p>Catch the action, join the chat and be part of the journey.</p>
+
+    <iframe
+      src="https://player.twitch.tv/?channel=ckelitex&parent=ckelitex.github.io&autoplay=false"
+      title="CKEliteX Twitch stream"
+      allowfullscreen>
+    </iframe>
+
+    <a class="button"
+       href="https://www.twitch.tv/ckelitex"
+       target="_blank" rel="noopener">
+       Open Twitch
+    </a>
+  </div>
+</section>
+
+<section class="container" id="content">
+  <div class="section-label">Gaming content</div>
+  <h2>The CKEliteX experience</h2>
+
+  <div class="grid">
+    <article class="card">
+      <div class="card-icon">⚽</div>
+      <h3>Ultimate Team</h3>
+      <p>Squad building, Division Rivals and the FC 27 grind.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-icon">🏆</div>
+      <h3>FUT Champions</h3>
+      <p>Weekend League action, highlights and rewards.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-icon">🎁</div>
+      <h3>Pack Openings</h3>
+      <p>Big pulls, promo cards and unforgettable moments.</p>
+    </article>
+  </div>
+</section>
+
+<section class="container">
+  <div class="section-label">Stream schedule</div>
+  <h2>Catch me live</h2>
+
+  <div class="card">
+    <div class="schedule-row">
+      <strong>Monday – Friday</strong>
+      <span>17:30 – 20:00</span>
+    </div>
+    <div class="schedule-row">
+      <strong>Saturday</strong>
+      <span>13:30 – 18:00</span>
+    </div>
+    <p>Usual schedule. Irish local time. Subject to change.</p>
+  </div>
+</section>
+
+<section class="container" id="community">
+  <div class="section-label">Stay connected</div>
+  <h2>Join the CKEliteX community</h2>
+
+  <div class="grid">
+
+    <a class="card"
+       href="https://www.twitch.tv/ckelitex"
+       target="_blank" rel="noopener">
+      <div class="card-icon accent">▶</div>
+      <h3>Twitch ↗</h3>
+      <p>Watch live and join the chat.</p>
+    </a>
+
+    <a class="card"
+       href="https://www.tiktok.com/@ckelitex"
+       target="_blank" rel="noopener">
+      <div class="card-icon">♫</div>
+      <h3>TikTok ↗</h3>
+      <p>Gaming clips and highlights.</p>
+    </a>
+
+    <a class="card"
+       href="https://www.youtube.com/@ckelitex"
+       target="_blank" rel="noopener">
+      <div class="card-icon accent">▷</div>
+      <h3>YouTube ↗</h3>
+      <p>Videos and pack openings.</p>
+    </a>
+
+    <a class="card"
+       href="https://kick.com/ckelitex"
+       target="_blank" rel="noopener">
+      <div class="card-icon">K</div>
+      <h3>Kick ↗</h3>
+      <p>More live gaming content.</p>
+    </a>
+
+  </div>
+</section>
+
+<section class="container" id="about">
+  <div class="section-label">Behind the brand</div>
+  <h2>About CKEliteX</h2>
+
+  <p class="about">
+    CKEliteX is an independent Irish gaming creator
+    focused on EA Sports FC, Ultimate Team and building
+    a community of people who share a passion for gaming
+    and football. Follow the journey from the beginning
+    and be part of what comes next.
+  </p>
+</section>
+
+<footer>
+  <div class="logo">
+    <span class="accent">♛</span>
+    CKElite<span class="accent">X</span>
+  </div>
+  <p>Created in Ireland 🇮🇪</p>
+  <p>© 2026 CKEliteX. All rights reserved.</p>
+  <p>Independent gaming creator. Not affiliated with EA Sports.</p>
+</footer>
+
+</body>
+</html>
