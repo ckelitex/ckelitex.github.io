@@ -1,0 +1,997 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CKEliteX | Watch Live</title>
+<meta name="description" content="The official CKEliteX website. Irish gaming creator featuring EA FC 27, Ultimate Team, Twitch streams, pack openings and exclusive Insider content.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://ckelitex.github.io/watch.html">
+<meta name="theme-color" content="#101014">
+
+<script>
+try {
+  if (localStorage.getItem("ckelitex_insider") === "true") {
+    document.documentElement.classList.add("returning-insider");
+  }
+} catch (error) {}
+</script>
+
+<style>
+:root {
+  --purple: #b49af4;
+  --background: #101014;
+  --panel: #1a1922;
+  --muted: #aaa7b7;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: #f5f4fa;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+
+a { color: inherit; text-decoration: none; }
+
+nav {
+  max-width: 1200px;
+  margin: auto;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+.accent { color: var(--purple); }
+
+.navlinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.navlinks a:hover { color: white; }
+
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 100px 24px;
+  background: radial-gradient(
+    ellipse at top,
+    #30213f 0%,
+    #191520 45%,
+    #101014 80%
+  );
+  overflow: hidden;
+}
+
+.crown {
+  width: 110px;
+  height: 110px;
+  margin: auto;
+  color: var(--purple);
+  filter: drop-shadow(0 0 25px #9570d644);
+}
+
+.eyebrow {
+  color: var(--purple);
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: clamp(52px, 10vw, 110px);
+  letter-spacing: -5px;
+  line-height: 1.1;
+  margin: 20px 0;
+}
+
+h2 {
+  font-size: clamp(25px, 4vw, 36px);
+  letter-spacing: -1px;
+  line-height: 1.2;
+}
+
+.hero p {
+  color: var(--muted);
+  max-width: 550px;
+  margin: 20px auto 32px;
+}
+
+.button {
+  display: inline-block;
+  background: var(--purple);
+  color: #171020;
+  font-weight: bold;
+  padding: 14px 28px;
+  border-radius: 9px;
+  margin: 6px;
+  transition: .25s;
+}
+
+.button:hover {
+  transform: translateY(-3px);
+  background: #d3c3ff;
+}
+
+.secondary {
+  background: #ffffff09;
+  border: 1px solid #ffffff25;
+  color: white;
+}
+
+.secondary:hover { background: #ffffff15; }
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 45px 24px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+  gap: 18px;
+}
+
+.card {
+  padding: 28px;
+  background: var(--panel);
+  border: 1px solid #ffffff0d;
+  border-radius: 16px;
+  transition: .25s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: #b49af466;
+}
+
+.card h3 { margin-bottom: 6px; }
+
+.card p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.card-icon { font-size: 30px; }
+
+.section-label {
+  color: var(--purple);
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.stream {
+  background: linear-gradient(135deg,#21192e,#16161d);
+  border: 1px solid #b49af422;
+  padding: 35px;
+  border-radius: 20px;
+}
+
+.stream iframe {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border: 0;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.schedule-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 18px 0;
+  border-bottom: 1px solid #ffffff10;
+}
+
+.schedule-row span { color: var(--muted); }
+
+.about {
+  max-width: 750px;
+  color: var(--muted);
+}
+
+/* CKEliteX Insiders */
+
+.insiders {
+  background: linear-gradient(135deg,#30213f,#1a1922);
+  border: 1px solid #b49af455;
+  border-radius: 24px;
+  padding: 45px 24px;
+  text-align: center;
+  box-shadow: 0 0 35px #8916be15;
+}
+
+.insiders h2 {
+  color: #b49af4;
+  margin-bottom: 16px;
+}
+
+.insiders p {
+  color: var(--muted);
+}
+
+.insider-description {
+  max-width: 600px;
+  margin: auto;
+}
+
+.insider-benefits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 25px 0;
+}
+
+.insider-benefits span {
+  background: #ffffff09;
+  border: 1px solid #ffffff15;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.insider-form {
+  max-width: 650px;
+  margin: 25px auto;
+}
+
+.insider-note {
+  font-size: 12px;
+}
+
+.free-label {
+  display: inline-block;
+  color: #b49af4;
+  background: #b49af414;
+  border: 1px solid #b49af433;
+  border-radius: 30px;
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+/* Returning Insiders */
+
+.member-only {
+  display: none;
+}
+
+html.returning-insider .guest-only {
+  display: none !important;
+}
+
+html.returning-insider .member-only {
+  display: block;
+}
+
+html.returning-insider a.member-only {
+  display: inline-block;
+}
+
+.insider-welcome {
+  background: #1a1922;
+  border: 1px solid #b49af455;
+  border-radius: 20px;
+  padding: 35px 20px;
+  margin: 25px auto;
+  max-width: 650px;
+  text-align: center;
+  box-shadow: 0 0 35px #8916be20;
+  animation: welcomeAppear .6s ease;
+}
+
+.insider-crown {
+  width: 85px;
+  height: 85px;
+  color: var(--purple);
+  filter: drop-shadow(0 0 20px #8916be55);
+}
+
+.insider-status {
+  display: inline-block;
+  background: #b49af414;
+  color: #b49af4;
+  border: 1px solid #b49af444;
+  border-radius: 30px;
+  padding: 8px 18px;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+@keyframes welcomeAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Privacy */
+
+.privacy {
+  max-width: 750px;
+  margin: auto;
+  text-align: left;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.privacy a {
+  color: var(--purple);
+  text-decoration: underline;
+}
+
+.privacy summary {
+  cursor: pointer;
+  text-align: center;
+  color: var(--purple);
+}
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  padding: 40px 20px;
+  border-top: 1px solid #ffffff10;
+  font-size: 13px;
+}
+
+/* Cookie consent */
+
+.cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: calc(100% - 40px);
+  max-width: 440px;
+  background: #1a1922;
+  border: 1px solid #b49af466;
+  border-radius: 18px;
+  padding: 24px;
+  z-index: 9999;
+  box-shadow: 0 10px 50px #00000088;
+}
+
+.cookie-banner[hidden] {
+  display: none !important;
+}
+
+.cookie-banner h3 {
+  margin: 0 0 10px;
+  color: #b49af4;
+  font-size: 19px;
+}
+
+.cookie-banner p {
+  color: #aaa7b7;
+  font-size: 13px;
+  margin: 0 0 18px;
+}
+
+.cookie-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.cookie-actions button {
+  flex: 1;
+  background: #b49af4;
+  color: #171020;
+  border: 1px solid #b49af4;
+  border-radius: 9px;
+  padding: 12px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.cookie-actions button:hover {
+  background: #d3c3ff;
+}
+
+.cookie-settings {
+  background: none;
+  border: none;
+  color: #b49af4;
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 10px;
+}
+
+.cookie-settings:hover {
+  color: white;
+}
+
+.cookie-privacy-link {
+  color: #b49af4;
+  text-decoration: underline;
+}
+
+@media(max-width:600px) {
+  nav { justify-content: center; }
+  .navlinks { gap: 18px; }
+  .hero { padding: 65px 20px; }
+  h1 { letter-spacing: -3px; }
+  .stream { padding: 20px; }
+  .insiders { padding: 30px 16px; }
+  .insider-benefits span { width: 100%; }
+
+  .cookie-banner {
+    left: 12px;
+    bottom: 12px;
+    width: calc(100% - 24px);
+    padding: 20px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  html { scroll-behavior: auto; }
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+#elite-members{text-align:center} #elite-members .panel{background:var(--panel);border:1px solid #b49af455;border-radius:18px;padding:24px;margin:16px auto;max-width:760px} #elite-members input,#elite-members button{width:100%;padding:14px;margin:7px 0;border-radius:9px;font:inherit} #elite-members input{background:#101014;color:white;border:1px solid #b49af455} #elite-members button{background:var(--purple);color:#171020;border:0;font-weight:bold;cursor:pointer} #elite-members button.secondary{background:#30213f;color:white} #elite-members button:disabled{opacity:.5;cursor:not-allowed} #elite-members .stats{display:grid;grid-template-columns:1fr 1fr;gap:12px} #elite-members .stat,#elite-members .reward{background:#25143b;border-radius:10px;padding:12px} #elite-members .number{font-size:32px;font-weight:bold;color:#e9b949} #elite-members .rewards{display:grid;grid-template-columns:repeat(auto-fit,minmax(75px,1fr));gap:8px;margin:20px 0} #elite-members .reward.active{outline:2px solid #c084fc} #elite-members .reward.claimed{outline:1px solid #22c55e} #elite-members [hidden]{display:none!important} #elite-members #message{overflow-wrap:anywhere} #elite-members p,#elite-members small{color:var(--muted)}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a class="logo" href="index.html">
+    <span class="accent">♛</span>
+    CKElite<span class="accent">X</span>
+  </a>
+
+  <div class="navlinks"><a href="index.html">Home</a>
+<a href="watch.html">Watch Live</a>
+<a href="clips.html">Clips</a>
+<a href="insiders.html">Insiders</a>
+<a href="rewards.html">Elite Rewards</a>
+<a href="games.html">Games</a>
+<a href="socials.html">Socials</a>
+<a href="rewards.html#elite-members">My Account</a></div>
+</nav>
+
+
+
+<section class="container" id="stream">
+
+  <div class="section-label">The stream</div>
+
+  <h2>Watch CKEliteX</h2>
+
+  <div class="stream">
+
+    <h3>CKEliteX on Twitch</h3>
+
+    <p>Catch the action, join the chat and be part of the journey.</p>
+
+    <iframe
+      src="https://player.twitch.tv/?channel=ckelitex&parent=ckelitex.github.io&autoplay=false"
+      title="CKEliteX Twitch stream"
+      allowfullscreen>
+    </iframe>
+
+    <a class="button"
+       href="https://www.twitch.tv/ckelitex"
+       target="_blank" rel="noopener">
+       Open Twitch
+    </a>
+
+  </div>
+
+</section>
+
+<section class="container">
+
+  <div class="section-label">Stream schedule</div>
+
+  <h2>Catch me live</h2>
+
+  <div class="card">
+
+    <div class="schedule-row">
+      <strong>Monday – Friday</strong>
+      <span>17:30 – 20:00</span>
+    </div>
+
+    <div class="schedule-row">
+      <strong>Saturday</strong>
+      <span>13:30 – 18:00</span>
+    </div>
+
+    <p>Usual schedule. Irish local time. Subject to change.</p>
+
+  </div>
+
+</section>
+
+<footer>
+
+  <div class="logo">
+    <span class="accent">♛</span>
+    CKElite<span class="accent">X</span>
+  </div>
+
+  <p>Created in Ireland 🇮🇪</p>
+
+  <p>© 2026 CKEliteX. All rights reserved.</p>
+
+  <p>Independent gaming creator. Not affiliated with EA Sports.</p>
+
+  <details class="privacy" id="privacy">
+
+    <summary>Privacy &amp; cookie information</summary>
+
+    <h3>Email subscriptions</h3>
+
+    <p>
+      CKEliteX collects your email address when you voluntarily
+      subscribe to CKEliteX Insiders. Your email is used to
+      deliver gaming content, early-access clips, announcements
+      and community updates based on your consent.
+    </p>
+
+    <p>
+      Email subscriptions are managed through Kit, a third-party
+      email marketing platform. Kit processes subscriber information
+      to provide email delivery and subscription management.
+      Information may be processed outside the European Economic Area.
+      See the
+      <a href="https://kit.com/privacy"
+         target="_blank" rel="noopener">Kit Privacy Policy</a>
+      for more information.
+    </p>
+
+    <h3>Insider recognition</h3>
+
+    <p>
+      This website uses local browser storage to remember
+      visitors who have reached the Insider welcome page.
+      No email address or password is stored by this feature.
+      Browser recognition is not secure account authentication.
+      Clearing your website data removes this preference.
+      This does not unsubscribe you from CKEliteX emails.
+    </p>
+
+    <h3>Gaming accounts</h3><p>Supabase provides account authentication and stores your account email, profile, points, streak and last reward claim. Browser storage maintains your login session. Gaming accounts are separate from optional newsletter subscriptions. Contact us to request account deletion or access to your data. See <a href="https://supabase.com/privacy">Supabase privacy information</a>.</p>
+<h3>Google Analytics</h3>
+
+    <p>
+      With your permission, CKEliteX uses Google Analytics
+      to understand website traffic, visitor engagement,
+      approximate geographic location, device types and
+      traffic sources.
+    </p>
+
+    <p>
+      Google Analytics uses cookies and similar technologies
+      to measure website usage. Analytics is optional and
+      is not loaded until you accept analytics cookies.
+      Your choice is remembered in your browser.
+    </p>
+
+    <p>
+      You can withdraw or change your analytics consent
+      at any time using Cookie Settings below.
+      Google may process information outside the European
+      Economic Area.
+      Read the
+      <a href="https://policies.google.com/privacy"
+         target="_blank" rel="noopener">Google Privacy Policy</a>
+      for more information.
+    </p>
+
+    <h3>Third-party services</h3>
+
+    <p>
+      This website includes services provided by Twitch
+      and Kit. These services may process information
+      and use their own cookies or similar technologies.
+      Their privacy policies explain how they handle data.
+    </p>
+
+    <h3>Your privacy rights</h3>
+
+    <p>
+      You can withdraw your email consent at any time using
+      the unsubscribe link included in our emails.
+      You can also contact CKEliteX to request access,
+      correction or deletion of your personal information.
+    </p>
+
+    <p>
+      Contact:
+      <a href="mailto:ckelitex@gmail.com">
+        ckelitex@gmail.com
+      </a>
+    </p>
+
+  </details>
+
+  <button class="cookie-settings"
+          id="cookie-settings"
+          type="button">
+    Cookie Settings
+  </button>
+
+</footer>
+
+<!-- Cookie consent banner -->
+
+<aside class="cookie-banner"
+       id="cookie-banner"
+       aria-labelledby="cookie-title"
+       hidden>
+
+  <h3 id="cookie-title">🍪 Your privacy matters</h3>
+
+  <p>
+    We use optional Google Analytics cookies to understand
+    how visitors use CKEliteX and improve your experience.
+    You can accept or decline analytics cookies.
+    Your choice will not affect your Insider membership.
+  </p>
+
+  <p>
+    <a class="cookie-privacy-link"
+       href="#privacy"
+       id="cookie-privacy-link">
+      Privacy &amp; cookie information
+    </a>
+  </p>
+
+  <div class="cookie-actions">
+
+    <button id="accept-cookies" type="button">
+      Accept analytics
+    </button>
+
+    <button id="decline-cookies" type="button">
+      Decline analytics
+    </button>
+
+  </div>
+
+</aside>
+
+<!-- Insider recognition -->
+
+<script>
+(function () {
+
+  let signupFormLoaded = false;
+
+  function isInsider() {
+    try {
+      return localStorage.getItem("ckelitex_insider") === "true";
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function loadSignupForm() {
+
+    if (signupFormLoaded) return;
+
+    const formContainer = document.getElementById("kit-form");
+
+    if (!formContainer) return;
+
+    signupFormLoaded = true;
+
+    const kitScript = document.createElement("script");
+
+    kitScript.async = true;
+
+    kitScript.setAttribute("data-uid", "f2951b9928");
+
+    kitScript.src =
+      "https://ckelitex.kit.com/f2951b9928/index.js";
+
+    kitScript.onerror = function () {
+
+      signupFormLoaded = false;
+
+      kitScript.remove();
+
+      formContainer.textContent =
+        "Unable to load the signup form. Please refresh the page.";
+
+    };
+
+    formContainer.textContent = "";
+    formContainer.appendChild(kitScript);
+
+  }
+
+  function updateInsiderStatus() {
+
+    const member = isInsider();
+
+    document.documentElement.classList.toggle(
+      "returning-insider", member
+    );
+
+    if (!member) {
+      loadSignupForm();
+    }
+
+  }
+
+  updateInsiderStatus();
+
+  window.addEventListener("storage", function (event) {
+
+    if (event.key === "ckelitex_insider" || event.key === null) {
+      updateInsiderStatus();
+    }
+
+  });
+
+  window.addEventListener("pageshow", updateInsiderStatus);
+
+})();
+</script>
+
+<!-- Google Analytics with consent -->
+
+<script>
+(function () {
+
+  const measurementId = "G-95GHT42KQX";
+  const consentKey = "ckelitex_analytics_consent";
+
+  const banner = document.getElementById("cookie-banner");
+  const acceptButton = document.getElementById("accept-cookies");
+  const declineButton = document.getElementById("decline-cookies");
+  const settingsButton = document.getElementById("cookie-settings");
+
+  let analyticsLoaded = false;
+  let sessionConsent = null;
+
+  window["ga-disable-" + measurementId] = true;
+
+  function getConsent() {
+
+    try {
+      return localStorage.getItem(consentKey) || sessionConsent;
+    } catch (error) {
+      return sessionConsent;
+    }
+
+  }
+
+  function saveConsent(value) {
+
+    sessionConsent = value;
+
+    try {
+      localStorage.setItem(consentKey, value);
+    } catch (error) {}
+
+  }
+
+  function startAnalytics() {
+
+    if (getConsent() !== "accepted") return;
+
+    window["ga-disable-" + measurementId] = false;
+
+    if (analyticsLoaded) return;
+
+    analyticsLoaded = true;
+
+    window.dataLayer = window.dataLayer || [];
+
+    window.gtag = function () {
+      window.dataLayer.push(arguments);
+    };
+
+    window.gtag("consent", "default", {
+      analytics_storage: "granted",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied"
+    });
+
+    window.gtag("js", new Date());
+
+    window.gtag("config", measurementId, {
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false,
+      send_page_view: true,
+      cookie_domain: "none",
+      cookie_expires: 15552000,
+      cookie_update: false,
+      page_location: window.location.origin + window.location.pathname
+    });
+
+    const analyticsScript = document.createElement("script");
+
+    analyticsScript.async = true;
+
+    analyticsScript.src =
+      "https://www.googletagmanager.com/gtag/js?id=" +
+      measurementId;
+
+    analyticsScript.onerror = function () {
+      analyticsLoaded = false;
+      analyticsScript.remove();
+    };
+
+    document.head.appendChild(analyticsScript);
+
+  }
+
+  function deleteAnalyticsCookies() {
+
+    document.cookie.split(";").forEach(function (cookie) {
+
+      const name = cookie.split("=")[0].trim();
+
+      if (
+        name === "_ga" ||
+        name.startsWith("_ga_") ||
+        name === "_gid" ||
+        name.startsWith("_gat")
+      ) {
+
+        document.cookie =
+          name + "=; Max-Age=0; path=/; Secure; SameSite=Lax";
+
+        document.cookie =
+          name + "=; Max-Age=0; path=/; domain=" +
+          window.location.hostname + "; Secure; SameSite=Lax";
+
+      }
+
+    });
+
+  }
+
+  function stopAnalytics() {
+
+    window["ga-disable-" + measurementId] = true;
+
+    if (typeof window.gtag === "function") {
+
+      window.gtag("consent", "update", {
+        analytics_storage: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied"
+      });
+
+    }
+
+    deleteAnalyticsCookies();
+
+  }
+
+  acceptButton.addEventListener("click", function () {
+
+    saveConsent("accepted");
+
+    banner.hidden = true;
+
+    if (analyticsLoaded) {
+      window.location.reload();
+    } else {
+      startAnalytics();
+    }
+
+  });
+
+  declineButton.addEventListener("click", function () {
+
+    saveConsent("declined");
+
+    stopAnalytics();
+
+    banner.hidden = true;
+
+    if (analyticsLoaded) {
+      window.location.reload();
+    }
+
+  });
+
+  settingsButton.addEventListener("click", function () {
+
+    banner.hidden = false;
+    acceptButton.focus();
+
+  });
+
+  document.getElementById("cookie-privacy-link")
+    .addEventListener("click", function () {
+
+      document.getElementById("privacy").open = true;
+
+    });
+
+  window.addEventListener("storage", function (event) {
+
+    if (event.key === consentKey || event.key === null) {
+
+      sessionConsent = null;
+
+      if (getConsent() === "accepted") {
+
+        banner.hidden = true;
+
+        if (analyticsLoaded) {
+          window.location.reload();
+        } else {
+          startAnalytics();
+        }
+
+      } else {
+
+        stopAnalytics();
+
+        if (analyticsLoaded) {
+          window.location.reload();
+        } else {
+          banner.hidden = getConsent() === "declined";
+        }
+
+      }
+
+    }
+
+  });
+
+  const existingConsent = getConsent();
+
+  if (existingConsent === "accepted") {
+
+    startAnalytics();
+
+  } else if (existingConsent === "declined") {
+
+    stopAnalytics();
+
+  } else {
+
+    banner.hidden = false;
+
+  }
+
+})();
+</script>
+
+
+</body>
+</html>
