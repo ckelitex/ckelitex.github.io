@@ -462,24 +462,24 @@ footer {
 }
 #elite-members{text-align:center} #elite-members .panel{background:var(--panel);border:1px solid #b49af455;border-radius:18px;padding:24px;margin:16px auto;max-width:760px} #elite-members input,#elite-members button{width:100%;padding:14px;margin:7px 0;border-radius:9px;font:inherit} #elite-members input{background:#101014;color:white;border:1px solid #b49af455} #elite-members button{background:var(--purple);color:#171020;border:0;font-weight:bold;cursor:pointer} #elite-members button.secondary{background:#30213f;color:white} #elite-members button:disabled{opacity:.5;cursor:not-allowed} #elite-members .stats{display:grid;grid-template-columns:1fr 1fr;gap:12px} #elite-members .stat,#elite-members .reward{background:#25143b;border-radius:10px;padding:12px} #elite-members .number{font-size:32px;font-weight:bold;color:#e9b949} #elite-members .rewards{display:grid;grid-template-columns:repeat(auto-fit,minmax(75px,1fr));gap:8px;margin:20px 0} #elite-members .reward.active{outline:2px solid #c084fc} #elite-members .reward.claimed{outline:1px solid #22c55e} #elite-members [hidden]{display:none!important} #elite-members #message{overflow-wrap:anywhere} #elite-members p,#elite-members small{color:var(--muted)}
 </style>
-</head>
+<style>nav.ck-nav{position:relative;display:flex;justify-content:space-between;align-items:center;flex-wrap:nowrap;z-index:1000;padding:18px 24px} .ck-menu{position:relative}.ck-toggle{display:flex;align-items:center;gap:12px;background:#21172e;color:#fff;border:1px solid #8050b4;border-radius:12px;padding:12px 18px;font:inherit;cursor:pointer;transition:background .2s,box-shadow .2s}.ck-toggle:hover,.ck-toggle:focus-visible{background:#39224e;box-shadow:0 0 18px #a855f744}.ck-bars{display:grid;gap:5px;width:22px}.ck-bars i{display:block;height:2px;background:#c084fc;border-radius:3px;transition:transform .25s,opacity .2s}.ck-toggle[aria-expanded=true] .ck-bars i:first-child{transform:translateY(7px) rotate(45deg)}.ck-toggle[aria-expanded=true] .ck-bars i:nth-child(2){opacity:0}.ck-toggle[aria-expanded=true] .ck-bars i:last-child{transform:translateY(-7px) rotate(-45deg)}.ck-dropdown{position:absolute;right:0;top:calc(100% + 12px);width:min(280px,calc(100vw - 48px));max-height:75vh;overflow:auto;background:#18121f;border:1px solid #63408a;border-radius:16px;padding:8px;box-shadow:0 18px 50px #0009;opacity:0;visibility:hidden;transform:translateY(-10px) scale(.97);transform-origin:top right;transition:opacity .22s,transform .22s,visibility .22s}.ck-menu.open .ck-dropdown{opacity:1;visibility:visible;transform:translateY(0) scale(1)}.ck-dropdown a{display:flex;align-items:center;gap:12px;color:#ddd5e8;text-decoration:none;padding:12px;border-radius:9px;transition:background .18s,transform .18s,color .18s}.ck-dropdown a:hover,.ck-dropdown a:focus-visible,.ck-dropdown a[aria-current=page]{background:#35214c;color:#fff;transform:translateX(3px)}.ck-dropdown a span{width:24px;text-align:center}@media(prefers-reduced-motion:reduce){.ck-menu *{transition:none!important}}</style></head>
 
 <body>
 
-<nav>
+<nav class="ck-nav">
   <a class="logo" href="index.html">
     <span class="accent">♛</span>
     CKElite<span class="accent">X</span>
   </a>
 
-  <div class="navlinks"><a href="index.html">Home</a>
-<a href="watch.html">Watch Live</a>
-<a href="clips.html">Clips</a>
-<a href="insiders.html">Insiders</a>
-<a href="rewards.html">Elite Rewards</a>
-<a href="games.html">Games</a>
-<a href="socials.html">Socials</a>
-<a href="rewards.html#elite-members">My Account</a></div>
+  <div class="ck-menu"><button class="ck-toggle" type="button" aria-expanded="false" aria-controls="ck-dropdown"><span>Menu</span><span class="ck-bars" aria-hidden="true"><i></i><i></i><i></i></span></button><div class="ck-dropdown" id="ck-dropdown"><a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
+<a href="watch.html"><span aria-hidden="true">🔴</span>Watch Live</a>
+<a href="clips.html"><span aria-hidden="true">🎬</span>Clips</a>
+<a href="insiders.html"><span aria-hidden="true">👑</span>Insiders</a>
+<a href="rewards.html"><span aria-hidden="true">🎁</span>Elite Rewards</a>
+<a href="games.html" aria-current="page"><span aria-hidden="true">🎮</span>Games</a>
+<a href="socials.html"><span aria-hidden="true">🌐</span>Socials</a>
+<a href="rewards.html#elite-members"><span aria-hidden="true">👤</span>My Account</a></div></div>
 </nav>
 
 
@@ -941,5 +941,5 @@ footer {
 </script>
 
 
-</body>
+<script>(function(){const m=document.querySelector(".ck-menu"),b=m.querySelector("button"),d=m.querySelector(".ck-dropdown");function set(v){m.classList.toggle("open",v);b.setAttribute("aria-expanded",String(v));d.inert=!v;}set(false);b.addEventListener("click",()=>set(b.getAttribute("aria-expanded")!=="true"));document.addEventListener("click",e=>{if(!m.contains(e.target))set(false)});document.addEventListener("keydown",e=>{if(e.key==="Escape"&&m.classList.contains("open")){set(false);b.focus()}});d.addEventListener("click",e=>{if(e.target.closest("a"))set(false)});})();</script></body>
 </html>
