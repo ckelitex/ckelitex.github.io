@@ -785,6 +785,9 @@ footer {
 <script>
 (function () {
 
+  // Prevent the Kit signup form from loading twice.
+  let signupFormLoaded = false;
+
   function isInsider() {
     try {
       return localStorage.getItem("ckelitex_insider") === "true";
@@ -794,11 +797,14 @@ footer {
   }
 
   function loadSignupForm() {
+
+    if (signupFormLoaded) return;
+
     const formContainer = document.getElementById("kit-form");
 
-    if (!formContainer || formContainer.querySelector("script")) {
-      return;
-    }
+    if (!formContainer) return;
+
+    signupFormLoaded = true;
 
     const kitScript = document.createElement("script");
 
@@ -809,10 +815,19 @@ footer {
     kitScript.src =
       "https://ckelitex.kit.com/f2951b9928/index.js";
 
+    kitScript.onerror = function () {
+      signupFormLoaded = false;
+      kitScript.remove();
+      formContainer.textContent =
+        "Unable to load the signup form. Please refresh the page.";
+    };
+
+    formContainer.textContent = "";
     formContainer.appendChild(kitScript);
   }
 
   function updateInsiderStatus() {
+
     const member = isInsider();
 
     document.documentElement.classList.toggle(
@@ -829,20 +844,31 @@ footer {
   const resetButton = document.getElementById("reset-insider");
 
   if (resetButton) {
+
     resetButton.addEventListener("click", function () {
+
       try {
+
         localStorage.removeItem("ckelitex_insider");
+
         window.location.reload();
+
       } catch (error) {
+
         alert("Unable to reset browser recognition.");
+
       }
+
     });
+
   }
 
   window.addEventListener("storage", function (event) {
+
     if (event.key === "ckelitex_insider" || event.key === null) {
       updateInsiderStatus();
     }
+
   });
 
   window.addEventListener("pageshow", updateInsiderStatus);
