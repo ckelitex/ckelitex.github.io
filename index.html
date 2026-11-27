@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CKEliteX | Official Gaming Website</title>
-<meta name="description" content="The official CKEliteX website. Irish gaming creator featuring EA FC 27, Ultimate Team, Twitch streams, pack openings and gaming content.">
+<meta name="description" content="The official CKEliteX website. Irish gaming creator featuring EA FC 27, Ultimate Team, Twitch streams, pack openings and exclusive Insider content.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://ckelitex.github.io/">
 <meta name="theme-color" content="#101014">
@@ -45,6 +45,8 @@ nav {
 .accent { color: var(--purple); }
 .navlinks {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 24px;
   font-size: 14px;
   color: var(--muted);
@@ -168,6 +170,75 @@ h2 {
   max-width: 750px;
   color: var(--muted);
 }
+
+/* CKEliteX Insiders */
+.insiders {
+  background: linear-gradient(135deg,#30213f,#1a1922);
+  border: 1px solid #b49af455;
+  border-radius: 24px;
+  padding: 45px 24px;
+  text-align: center;
+  box-shadow: 0 0 35px #8916be15;
+}
+.insiders h2 {
+  color: #b49af4;
+  margin-bottom: 16px;
+}
+.insiders p {
+  color: var(--muted);
+}
+.insider-description {
+  max-width: 600px;
+  margin: auto;
+}
+.insider-benefits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 25px 0;
+}
+.insider-benefits span {
+  background: #ffffff09;
+  border: 1px solid #ffffff15;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+.insider-form {
+  max-width: 650px;
+  margin: 25px auto;
+}
+.insider-note {
+  font-size: 12px;
+}
+.free-label {
+  display: inline-block;
+  color: #b49af4;
+  background: #b49af414;
+  border: 1px solid #b49af433;
+  border-radius: 30px;
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+.privacy {
+  max-width: 750px;
+  margin: auto;
+  text-align: left;
+  font-size: 13px;
+  color: var(--muted);
+}
+.privacy a {
+  color: var(--purple);
+  text-decoration: underline;
+}
+.privacy summary {
+  cursor: pointer;
+  text-align: center;
+  color: var(--purple);
+}
 footer {
   text-align: center;
   color: var(--muted);
@@ -181,6 +252,8 @@ footer {
   .hero { padding: 65px 20px; }
   h1 { letter-spacing: -3px; }
   .stream { padding: 20px; }
+  .insiders { padding: 30px 16px; }
+  .insider-benefits span { width: 100%; }
 }
 @media(prefers-reduced-motion:reduce) {
   html { scroll-behavior: auto; }
@@ -199,6 +272,7 @@ footer {
   <div class="navlinks">
     <a href="#stream">Watch</a>
     <a href="#content">Content</a>
+    <a href="#insiders">Insiders</a>
     <a href="#about">About</a>
   </div>
 </nav>
@@ -226,6 +300,7 @@ footer {
 
   <a class="button" href="#stream">▶ Watch CKEliteX</a>
   <a class="button secondary" href="#community">Join the community</a>
+  <a class="button secondary" href="#insiders">👑 Become an Insider</a>
 </header>
 
 <section class="container" id="stream">
@@ -292,6 +367,47 @@ footer {
   </div>
 </section>
 
+<section class="container" id="insiders">
+  <div class="insiders">
+
+    <div class="free-label">FREE MEMBERSHIP</div>
+
+    <div class="section-label">Exclusive access</div>
+
+    <h2>👑 CKEliteX Insiders</h2>
+
+    <p class="insider-description">
+      Be part of the inner circle. Get closer to the action
+      with early access to gaming clips, exclusive content
+      and updates delivered straight to your inbox.
+    </p>
+
+    <div class="insider-benefits">
+      <span>🔥 Early access to clips</span>
+      <span>🎮 Exclusive FC 27 content</span>
+      <span>🔴 Livestream announcements</span>
+      <span>💜 Behind-the-scenes updates</span>
+    </div>
+
+    <div class="insider-form">
+      <script async data-uid="f2951b9928"
+      src="https://ckelitex.kit.com/f2951b9928/index.js"></script>
+    </div>
+
+    <p class="insider-note">
+      100% free. No account needed. Unsubscribe anytime.
+      By subscribing, you agree to receive CKEliteX emails.
+    </p>
+
+    <p class="insider-note">
+      <a href="#privacy" style="color:#b49af4;">
+        Email privacy information
+      </a>
+    </p>
+
+  </div>
+</section>
+
 <section class="container" id="community">
   <div class="section-label">Stay connected</div>
   <h2>Join the CKEliteX community</h2>
@@ -323,12 +439,12 @@ footer {
     </a>
 
     <a class="card"
-   href="https://discord.gg/BFbvXkqtF2"
-   target="_blank" rel="noopener">
-  <div class="card-icon">💬</div>
-  <h3>Discord ↗</h3>
-  <p>Join the official CKEliteX community.</p>
-</a>
+       href="https://discord.gg/BFbvXkqtF2"
+       target="_blank" rel="noopener">
+      <div class="card-icon">💬</div>
+      <h3>Discord ↗</h3>
+      <p>Join the official CKEliteX community.</p>
+    </a>
 
   </div>
 </section>
@@ -351,9 +467,45 @@ footer {
     <span class="accent">♛</span>
     CKElite<span class="accent">X</span>
   </div>
+
   <p>Created in Ireland 🇮🇪</p>
   <p>© 2026 CKEliteX. All rights reserved.</p>
   <p>Independent gaming creator. Not affiliated with EA Sports.</p>
+
+  <details class="privacy" id="privacy">
+    <summary>Email privacy information</summary>
+
+    <p>
+      CKEliteX collects your email address when you voluntarily
+      subscribe to CKEliteX Insiders. Your email is used to
+      deliver gaming content, early-access clips, announcements
+      and community updates based on your consent.
+    </p>
+
+    <p>
+      Email subscriptions are managed through Kit, a third-party
+      email marketing platform. Kit processes subscriber information
+      to provide email delivery and subscription management.
+      Information may be processed outside the European Economic Area.
+      See the
+      <a href="https://kit.com/privacy"
+         target="_blank" rel="noopener">Kit Privacy Policy</a>
+      for more information.
+    </p>
+
+    <p>
+      You can withdraw your consent at any time using the
+      unsubscribe link included in our emails. You can also
+      contact CKEliteX to request access, correction or deletion
+      of your personal information.
+    </p>
+
+    <p>
+      Contact:
+      <a href="mailto:ckelitex@gmail.com">ckelitex@gmail.com</a>
+    </p>
+
+  </details>
 </footer>
 
 </body>
