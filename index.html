@@ -10,6 +10,14 @@
 <link rel="canonical" href="https://ckelitex.github.io/">
 <meta name="theme-color" content="#101014">
 
+<script>
+try {
+  if (localStorage.getItem("ckelitex_insider") === "true") {
+    document.documentElement.classList.add("returning-insider");
+  }
+} catch (error) {}
+</script>
+
 <style>
 :root {
   --purple: #b49af4;
@@ -17,8 +25,10 @@
   --panel: #1a1922;
   --muted: #aaa7b7;
 }
+
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+
 body {
   margin: 0;
   background: var(--background);
@@ -26,7 +36,9 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.6;
 }
+
 a { color: inherit; text-decoration: none; }
+
 nav {
   max-width: 1200px;
   margin: auto;
@@ -37,12 +49,15 @@ nav {
   flex-wrap: wrap;
   gap: 20px;
 }
+
 .logo {
   font-size: 25px;
   font-weight: 900;
   letter-spacing: -1px;
 }
+
 .accent { color: var(--purple); }
+
 .navlinks {
   display: flex;
   flex-wrap: wrap;
@@ -51,7 +66,9 @@ nav {
   font-size: 14px;
   color: var(--muted);
 }
+
 .navlinks a:hover { color: white; }
+
 .hero {
   position: relative;
   text-align: center;
@@ -64,6 +81,7 @@ nav {
   );
   overflow: hidden;
 }
+
 .crown {
   width: 110px;
   height: 110px;
@@ -71,6 +89,7 @@ nav {
   color: var(--purple);
   filter: drop-shadow(0 0 25px #9570d644);
 }
+
 .eyebrow {
   color: var(--purple);
   font-size: 11px;
@@ -78,22 +97,26 @@ nav {
   letter-spacing: 4px;
   text-transform: uppercase;
 }
+
 h1 {
   font-size: clamp(52px, 10vw, 110px);
   letter-spacing: -5px;
   line-height: 1.1;
   margin: 20px 0;
 }
+
 h2 {
   font-size: clamp(25px, 4vw, 36px);
   letter-spacing: -1px;
   line-height: 1.2;
 }
+
 .hero p {
   color: var(--muted);
   max-width: 550px;
   margin: 20px auto 32px;
 }
+
 .button {
   display: inline-block;
   background: var(--purple);
@@ -104,26 +127,32 @@ h2 {
   margin: 6px;
   transition: .25s;
 }
+
 .button:hover {
   transform: translateY(-3px);
   background: #d3c3ff;
 }
+
 .secondary {
   background: #ffffff09;
   border: 1px solid #ffffff25;
   color: white;
 }
+
 .secondary:hover { background: #ffffff15; }
+
 .container {
   max-width: 1100px;
   margin: auto;
   padding: 45px 24px;
 }
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
   gap: 18px;
 }
+
 .card {
   padding: 28px;
   background: var(--panel);
@@ -131,25 +160,35 @@ h2 {
   border-radius: 16px;
   transition: .25s;
 }
+
 .card:hover {
   transform: translateY(-4px);
   border-color: #b49af466;
 }
+
 .card h3 { margin-bottom: 6px; }
-.card p { color: var(--muted); font-size: 14px; }
+
+.card p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
 .card-icon { font-size: 30px; }
+
 .section-label {
   color: var(--purple);
   font-size: 12px;
   letter-spacing: 3px;
   text-transform: uppercase;
 }
+
 .stream {
   background: linear-gradient(135deg,#21192e,#16161d);
   border: 1px solid #b49af422;
   padding: 35px;
   border-radius: 20px;
 }
+
 .stream iframe {
   width: 100%;
   aspect-ratio: 16/9;
@@ -157,6 +196,7 @@ h2 {
   border-radius: 12px;
   margin-top: 20px;
 }
+
 .schedule-row {
   display: flex;
   justify-content: space-between;
@@ -165,13 +205,16 @@ h2 {
   padding: 18px 0;
   border-bottom: 1px solid #ffffff10;
 }
+
 .schedule-row span { color: var(--muted); }
+
 .about {
   max-width: 750px;
   color: var(--muted);
 }
 
 /* CKEliteX Insiders */
+
 .insiders {
   background: linear-gradient(135deg,#30213f,#1a1922);
   border: 1px solid #b49af455;
@@ -180,17 +223,21 @@ h2 {
   text-align: center;
   box-shadow: 0 0 35px #8916be15;
 }
+
 .insiders h2 {
   color: #b49af4;
   margin-bottom: 16px;
 }
+
 .insiders p {
   color: var(--muted);
 }
+
 .insider-description {
   max-width: 600px;
   margin: auto;
 }
+
 .insider-benefits {
   display: flex;
   flex-wrap: wrap;
@@ -198,6 +245,7 @@ h2 {
   gap: 12px;
   margin: 25px 0;
 }
+
 .insider-benefits span {
   background: #ffffff09;
   border: 1px solid #ffffff15;
@@ -205,13 +253,16 @@ h2 {
   border-radius: 10px;
   font-size: 14px;
 }
+
 .insider-form {
   max-width: 650px;
   margin: 25px auto;
 }
+
 .insider-note {
   font-size: 12px;
 }
+
 .free-label {
   display: inline-block;
   color: #b49af4;
@@ -223,6 +274,81 @@ h2 {
   font-weight: bold;
   margin-bottom: 16px;
 }
+
+/* Returning Insider experience */
+
+.member-only {
+  display: none;
+}
+
+html.returning-insider .guest-only {
+  display: none !important;
+}
+
+html.returning-insider .member-only {
+  display: block;
+}
+
+html.returning-insider a.member-only {
+  display: inline-block;
+}
+
+.insider-welcome {
+  background: #1a1922;
+  border: 1px solid #b49af455;
+  border-radius: 20px;
+  padding: 35px 20px;
+  margin: 25px auto;
+  max-width: 650px;
+  text-align: center;
+  box-shadow: 0 0 35px #8916be20;
+  animation: welcomeAppear .6s ease;
+}
+
+.insider-crown {
+  width: 85px;
+  height: 85px;
+  color: var(--purple);
+  filter: drop-shadow(0 0 20px #8916be55);
+}
+
+.insider-status {
+  display: inline-block;
+  background: #b49af414;
+  color: #b49af4;
+  border: 1px solid #b49af444;
+  border-radius: 30px;
+  padding: 8px 18px;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+.insider-reset {
+  background: none;
+  border: none;
+  color: #aaa7b7;
+  font-size: 12px;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.insider-reset:hover {
+  color: white;
+}
+
+@keyframes welcomeAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .privacy {
   max-width: 750px;
   margin: auto;
@@ -230,15 +356,18 @@ h2 {
   font-size: 13px;
   color: var(--muted);
 }
+
 .privacy a {
   color: var(--purple);
   text-decoration: underline;
 }
+
 .privacy summary {
   cursor: pointer;
   text-align: center;
   color: var(--purple);
 }
+
 footer {
   text-align: center;
   color: var(--muted);
@@ -246,6 +375,7 @@ footer {
   border-top: 1px solid #ffffff10;
   font-size: 13px;
 }
+
 @media(max-width:600px) {
   nav { justify-content: center; }
   .navlinks { gap: 18px; }
@@ -255,9 +385,13 @@ footer {
   .insiders { padding: 30px 16px; }
   .insider-benefits span { width: 100%; }
 }
+
 @media(prefers-reduced-motion:reduce) {
   html { scroll-behavior: auto; }
-  * { transition: none !important; }
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
 }
 </style>
 </head>
@@ -269,6 +403,7 @@ footer {
     <span class="accent">♛</span>
     CKElite<span class="accent">X</span>
   </a>
+
   <div class="navlinks">
     <a href="#stream">Watch</a>
     <a href="#content">Content</a>
@@ -278,6 +413,7 @@ footer {
 </nav>
 
 <header class="hero">
+
   <svg class="crown" viewBox="0 0 100 100"
        fill="none" stroke="currentColor"
        stroke-width="4" stroke-linejoin="round"
@@ -298,17 +434,34 @@ footer {
     pack openings and live gaming content.
   </p>
 
-  <a class="button" href="#stream">▶ Watch CKEliteX</a>
-  <a class="button secondary" href="#community">Join the community</a>
-  <a class="button secondary" href="#insiders">👑 Become an Insider</a>
+  <a class="button" href="#stream">
+    ▶ Watch CKEliteX
+  </a>
+
+  <a class="button secondary" href="#community">
+    Join the community
+  </a>
+
+  <a class="button secondary guest-only" href="#insiders">
+    👑 Become an Insider
+  </a>
+
+  <a class="button secondary member-only" href="#insiders">
+    👑 You're an Insider!
+  </a>
+
 </header>
 
 <section class="container" id="stream">
+
   <div class="section-label">The stream</div>
+
   <h2>Watch CKEliteX</h2>
 
   <div class="stream">
+
     <h3>CKEliteX on Twitch</h3>
+
     <p>Catch the action, join the chat and be part of the journey.</p>
 
     <iframe
@@ -322,14 +475,19 @@ footer {
        target="_blank" rel="noopener">
        Open Twitch
     </a>
+
   </div>
+
 </section>
 
 <section class="container" id="content">
+
   <div class="section-label">Gaming content</div>
+
   <h2>The CKEliteX experience</h2>
 
   <div class="grid">
+
     <article class="card">
       <div class="card-icon">⚽</div>
       <h3>Ultimate Team</h3>
@@ -347,57 +505,142 @@ footer {
       <h3>Pack Openings</h3>
       <p>Big pulls, promo cards and unforgettable moments.</p>
     </article>
+
   </div>
+
 </section>
 
 <section class="container">
+
   <div class="section-label">Stream schedule</div>
+
   <h2>Catch me live</h2>
 
   <div class="card">
+
     <div class="schedule-row">
       <strong>Monday – Friday</strong>
       <span>17:30 – 20:00</span>
     </div>
+
     <div class="schedule-row">
       <strong>Saturday</strong>
       <span>13:30 – 18:00</span>
     </div>
+
     <p>Usual schedule. Irish local time. Subject to change.</p>
+
   </div>
+
 </section>
 
 <section class="container" id="insiders">
+
   <div class="insiders">
 
-    <div class="free-label">FREE MEMBERSHIP</div>
+    <!-- New visitors -->
 
-    <div class="section-label">Exclusive access</div>
+    <div class="guest-only">
 
-    <h2>👑 CKEliteX Insiders</h2>
+      <div class="free-label">FREE MEMBERSHIP</div>
 
-    <p class="insider-description">
-      Be part of the inner circle. Get closer to the action
-      with early access to gaming clips, exclusive content
-      and updates delivered straight to your inbox.
-    </p>
+      <div class="section-label">Exclusive access</div>
 
-    <div class="insider-benefits">
-      <span>🔥 Early access to clips</span>
-      <span>🎮 Exclusive FC 27 content</span>
-      <span>🔴 Livestream announcements</span>
-      <span>💜 Behind-the-scenes updates</span>
+      <h2>👑 CKEliteX Insiders</h2>
+
+      <p class="insider-description">
+        Be part of the inner circle. Get closer to the action
+        with early access to gaming clips, exclusive content
+        and updates delivered straight to your inbox.
+      </p>
+
+      <div class="insider-benefits">
+        <span>🔥 Early access to clips</span>
+        <span>🎮 Exclusive FC 27 content</span>
+        <span>🔴 Livestream announcements</span>
+        <span>💜 Behind-the-scenes updates</span>
+      </div>
+
+      <div class="insider-form" id="kit-form"></div>
+
+      <p class="insider-note">
+        100% free. No account needed. Unsubscribe anytime.
+        By subscribing, you agree to receive CKEliteX emails.
+      </p>
+
     </div>
 
-    <div class="insider-form">
-      <script async data-uid="f2951b9928"
-      src="https://ckelitex.kit.com/f2951b9928/index.js"></script>
-    </div>
+    <!-- Returning Insiders -->
 
-    <p class="insider-note">
-      100% free. No account needed. Unsubscribe anytime.
-      By subscribing, you agree to receive CKEliteX emails.
-    </p>
+    <div class="member-only">
+
+      <div class="section-label">The inner circle</div>
+
+      <h2>👑 CKEliteX Insiders</h2>
+
+      <div class="insider-welcome">
+
+        <svg class="insider-crown"
+             viewBox="0 0 100 100"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="4"
+             stroke-linejoin="round"
+             aria-label="CKEliteX crown">
+          <path d="M12 30 L32 48 L50 18 L68 48 L88 30 L77 75 L23 75 Z"/>
+          <path d="M25 85 H75"/>
+        </svg>
+
+        <div>
+          <div class="insider-status">
+            👑 CKELITEX INSIDER
+          </div>
+        </div>
+
+        <h2>Welcome back, Insider!</h2>
+
+        <p>
+          You're already part of the CKEliteX family. 💜
+        </p>
+
+        <p>
+          Thank you for supporting CKEliteX and
+          being part of the journey.
+        </p>
+
+        <p>
+          Keep an eye on your inbox for exclusive content,
+          early access and exciting announcements.
+        </p>
+
+        <div class="insider-benefits">
+          <span>🔥 Early access to clips</span>
+          <span>🎮 Exclusive FC 27 content</span>
+          <span>🔴 Livestream announcements</span>
+          <span>💜 Behind-the-scenes updates</span>
+        </div>
+
+        <p>This is only the beginning.</p>
+
+        <a class="button" href="#stream">
+          ▶ Watch CKEliteX
+        </a>
+
+        <a class="button secondary" href="#community">
+          Join the community
+        </a>
+
+        <br>
+
+        <button class="insider-reset"
+                id="reset-insider"
+                type="button">
+          Not an Insider? Show signup form
+        </button>
+
+      </div>
+
+    </div>
 
     <p class="insider-note">
       <a href="#privacy" style="color:#b49af4;">
@@ -406,10 +649,13 @@ footer {
     </p>
 
   </div>
+
 </section>
 
 <section class="container" id="community">
+
   <div class="section-label">Stay connected</div>
+
   <h2>Join the CKEliteX community</h2>
 
   <div class="grid">
@@ -417,40 +663,51 @@ footer {
     <a class="card"
        href="https://www.twitch.tv/ckelitex"
        target="_blank" rel="noopener">
+
       <div class="card-icon accent">▶</div>
       <h3>Twitch ↗</h3>
       <p>Watch live and join the chat.</p>
+
     </a>
 
     <a class="card"
        href="https://www.tiktok.com/@ckelitex"
        target="_blank" rel="noopener">
+
       <div class="card-icon">♫</div>
       <h3>TikTok ↗</h3>
       <p>Gaming clips and highlights.</p>
+
     </a>
 
     <a class="card"
        href="https://www.youtube.com/@ckelitex"
        target="_blank" rel="noopener">
+
       <div class="card-icon accent">▷</div>
       <h3>YouTube ↗</h3>
       <p>Videos and pack openings.</p>
+
     </a>
 
     <a class="card"
        href="https://discord.gg/BFbvXkqtF2"
        target="_blank" rel="noopener">
+
       <div class="card-icon">💬</div>
       <h3>Discord ↗</h3>
       <p>Join the official CKEliteX community.</p>
+
     </a>
 
   </div>
+
 </section>
 
 <section class="container" id="about">
+
   <div class="section-label">Behind the brand</div>
+
   <h2>About CKEliteX</h2>
 
   <p class="about">
@@ -460,19 +717,24 @@ footer {
     and football. Follow the journey from the beginning
     and be part of what comes next.
   </p>
+
 </section>
 
 <footer>
+
   <div class="logo">
     <span class="accent">♛</span>
     CKElite<span class="accent">X</span>
   </div>
 
   <p>Created in Ireland 🇮🇪</p>
+
   <p>© 2026 CKEliteX. All rights reserved.</p>
+
   <p>Independent gaming creator. Not affiliated with EA Sports.</p>
 
   <details class="privacy" id="privacy">
+
     <summary>Email privacy information</summary>
 
     <p>
@@ -494,6 +756,15 @@ footer {
     </p>
 
     <p>
+      This website uses local browser storage to remember
+      visitors who have reached the Insider welcome page.
+      No email address or password is stored by this feature.
+      Browser recognition is not secure account authentication.
+      You can reset this preference using the option in
+      the Insider section or by clearing your browser data.
+    </p>
+
+    <p>
       You can withdraw your consent at any time using the
       unsubscribe link included in our emails. You can also
       contact CKEliteX to request access, correction or deletion
@@ -502,11 +773,82 @@ footer {
 
     <p>
       Contact:
-      <a href="mailto:ckelitex@gmail.com">ckelitex@gmail.com</a>
+      <a href="mailto:ckelitex@gmail.com">
+        ckelitex@gmail.com
+      </a>
     </p>
 
   </details>
+
 </footer>
+
+<script>
+(function () {
+
+  function isInsider() {
+    try {
+      return localStorage.getItem("ckelitex_insider") === "true";
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function loadSignupForm() {
+    const formContainer = document.getElementById("kit-form");
+
+    if (!formContainer || formContainer.querySelector("script")) {
+      return;
+    }
+
+    const kitScript = document.createElement("script");
+
+    kitScript.async = true;
+
+    kitScript.setAttribute("data-uid", "f2951b9928");
+
+    kitScript.src =
+      "https://ckelitex.kit.com/f2951b9928/index.js";
+
+    formContainer.appendChild(kitScript);
+  }
+
+  function updateInsiderStatus() {
+    const member = isInsider();
+
+    document.documentElement.classList.toggle(
+      "returning-insider", member
+    );
+
+    if (!member) {
+      loadSignupForm();
+    }
+  }
+
+  updateInsiderStatus();
+
+  const resetButton = document.getElementById("reset-insider");
+
+  if (resetButton) {
+    resetButton.addEventListener("click", function () {
+      try {
+        localStorage.removeItem("ckelitex_insider");
+        window.location.reload();
+      } catch (error) {
+        alert("Unable to reset browser recognition.");
+      }
+    });
+  }
+
+  window.addEventListener("storage", function (event) {
+    if (event.key === "ckelitex_insider" || event.key === null) {
+      updateInsiderStatus();
+    }
+  });
+
+  window.addEventListener("pageshow", updateInsiderStatus);
+
+})();
+</script>
 
 </body>
 </html>
