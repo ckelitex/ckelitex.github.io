@@ -494,7 +494,7 @@ footer {
 (()=>{const db=window.supabase.createClient(
   "https://bnzdbcpsrcbdrthnldpz.supabase.co",
   "sb_publishable_IRD6E_OCoJmF5sTlp3pECA_X1CE2vV-"
-);const $=id=>document.getElementById(id);let user,week;const status=s=>$('clip-status').textContent=s;
+);function ckAdminMenu(db){const menu=document.getElementById('ck-dropdown');if(!menu)return;let seq=0;async function refresh(){const n=++seq;menu.querySelector('[data-ck-admin]')?.remove();try{const {data,error}=await db.rpc('is_clip_admin');if(n!==seq||error||data!==true)return;const a=document.createElement('a');a.dataset.ckAdmin='true';a.href='creator-studio.html';a.textContent='♛ Elite Command Centre';a.style.color='#c99aff';menu.append(a)}catch{}}db.auth.onAuthStateChange(()=>{seq++;menu.querySelector('[data-ck-admin]')?.remove();setTimeout(refresh,0)});window.addEventListener('pageshow',refresh);refresh()}ckAdminMenu(db);const $=id=>document.getElementById(id);let user,week;const status=s=>$('clip-status').textContent=s;
 function el(tag,t){const n=document.createElement(tag);n.textContent=t||'';return n}
 async function check(p){const r=await p;if(r.error)throw r.error;return r.data}
 function card(parent,title){const c=el('article');c.className='card';c.append(el('h3',title));parent.append(c);return c}
