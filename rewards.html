@@ -1013,7 +1013,7 @@ if (!window.supabase) { document.getElementById("message").textContent = "Accoun
 const db = window.supabase.createClient(
   "https://bnzdbcpsrcbdrthnldpz.supabase.co",
   "sb_publishable_IRD6E_OCoJmF5sTlp3pECA_X1CE2vV-"
-);
+);function ckAdminMenu(db){const menu=document.getElementById('ck-dropdown');if(!menu)return;let seq=0;async function refresh(){const n=++seq;menu.querySelector('[data-ck-admin]')?.remove();try{const {data,error}=await db.rpc('is_clip_admin');if(n!==seq||error||data!==true)return;const a=document.createElement('a');a.dataset.ckAdmin='true';a.href='creator-studio.html';a.textContent='♛ Elite Command Centre';a.style.color='#c99aff';menu.append(a)}catch{}}db.auth.onAuthStateChange(()=>{seq++;menu.querySelector('[data-ck-admin]')?.remove();setTimeout(refresh,0)});window.addEventListener('pageshow',refresh);refresh()}ckAdminMenu(db);
 
 const $ = id => document.getElementById(id);
 const rewards = [100,150,200,250,300,400,1000];
